@@ -19,10 +19,9 @@ class ImageWidget : public QWidget
 public:
     explicit ImageWidget(QWidget *parent = nullptr);
 
-    void fillHexagon(int x0, int y0, QColor lastColor, QColor c);
+    void fillArea(int x0, int y0, QColor lastColor, QColor c);
     void drawField();
     void drawHexagon(GeomHexagon* hexagon);
-
 private:
     typedef struct {
         int left, right, y;
@@ -31,12 +30,10 @@ private:
     QColor borderColor;
     QColor cellColor;
     QColor backgroundColor;
-    QPainter* painter;
-
     QImage* image;
 
     int hexagonR;
-    int m, n;
+    //int m, n;
     double PI = 3.141592;
     vector<GeomHexagon> hexagons;
 

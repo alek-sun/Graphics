@@ -10,11 +10,9 @@ ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent)
     cellColor.setRgb(100, 0, 200, 120);
     borderColor.setRgb(0, 0, 0, 255);
     backgroundColor.setRgb(255,255,255,255);
-    hexagonR = 50;
-    m = 3;
-    n = 4;
+    hexagonR = 40;
     image = new QImage(width(), height(), QImage::Format_ARGB32);
-    createHexagonField(m,n);
+    createHexagonField(5,8);
 }
 
 void ImageWidget::drawHexagon(GeomHexagon* h)
@@ -29,44 +27,25 @@ void ImageWidget::drawHexagon(GeomHexagon* h)
             drawLine(h->x0 + h->vert[i].first,
                      h->y0 + h->vert[i].second,
                      h->x0 + h->vert[i+1].first,
-                     h->y0 + h->vert[i+1].second,
-                     borderColor);
+                    h->y0 + h->vert[i+1].second,
+                    borderColor);
         } else {
             drawLine(h->x0 + h->vert[i].first,
                      h->y0 + h->vert[i].second,
                      h->x0 + h->vert[0].first,
-                     h->y0 + h->vert[0].second,
-                     borderColor);
+                    h->y0 + h->vert[0].second,
+                    borderColor);
         }
     }
 }
 
-/*
-void ImageWidget::drawHexagon(GeomHexagon* h)
-{
-    int i;
-    double x, y, bufX, bufY;
-    bufX = round(hexagonR * cos(PI/6));
-    bufY = round(hexagonR * sin(PI/6));
-    bool empty = h->vert.empty();
 
-    for (i = 1; i <= 6; ++i){
-        x = round(hexagonR * cos(PI * i/3 + PI/6));
-        y = round(hexagonR * sin(PI * i/3 + PI/6));
-        if (empty){
-            h->vert.push_back(pair<int,int> (x, y));
-        }
 //        int globalX0 = static_cast<int>(x0 + bufX);
 //        int globalY0 = static_cast<int>(y0 + bufY);
 //        int globalX1 = static_cast<int>(x0 + x);
 //        int globalY1 = static_cast<int>(y0 + y);
 //        drawLine(globalX0, globalY0, globalX1, globalY1);
-        drawLine(h->x0 + bufX, h->y0 + bufY, h->x0 + x, h->y0 + y, borderColor);
-        bufX = x;
-        bufY = y;
-    }
-}
-        */
+
 
 void ImageWidget::setHexagonColored(int mx, int my)
 {
@@ -93,7 +72,7 @@ void ImageWidget::setHexagonColored(int mx, int my)
             //proection
             double scalar = (cx*bx + cy*by) / (bx*bx + by*by);
             //cout << "scalar = " << scalar << endl;
-            if (abs(scalar) > 1) { // -1
+            if (abs(scalar) >= 1) { // -1
                 draw = false;
                 break;
             }
@@ -123,7 +102,7 @@ void ImageWidget::pushSurround(int leftX, int yLevel, stack<ImageWidget::Span>, 
 }
 
 //Fill game coordinates here Map?
-void ImageWidget::fillHexagon(int x0, int y0, QColor lastColor, QColor newColor)
+void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
 {
     int seedY, i;
     stack<Span> stack;
@@ -137,18 +116,18 @@ void ImageWidget::fillHexagon(int x0, int y0, QColor lastColor, QColor newColor)
         stack.pop();
         seedY = curSpan.y;
         int Left = curSpan.left;
-        cout << "====================================> Y = " << curSpan.y << endl;
+        //cout << "====================================> Y = " << curSpan.y << endl;
 
         int Right = curSpan.right;
-        cout << "left = " << Left << endl;
+        //cout << "left = " << Left << endl;
 
-        cout << "right = " << Right << endl;
+        //cout << "right = " << Right << endl;
 
         drawLine(curSpan.left, seedY, curSpan.right, seedY, newColor);
 
         for (i = curSpan.left; i <= curSpan.right; ++i){
             if (image->pixelColor(i, seedY+1) == lastColor){
-                cout << "FOUNDED SPAN START " << i << " ; " << seedY+1 << endl;
+                //cout << "FOUNDED SPAN START " << i << " ; " << seedY+1 << endl;
                 sp = getSpan(i, seedY+1, lastColor);
                 stack.push(sp);
                 i = sp.right;
@@ -158,7 +137,7 @@ void ImageWidget::fillHexagon(int x0, int y0, QColor lastColor, QColor newColor)
         for (i = curSpan.left; i <= curSpan.right; ++i){
             if (seedY > 0){
                 if (image->pixelColor(i, seedY-1) == lastColor){
-                    cout << "FOUNDED SPAN START " << i << " ; " << seedY-1 << endl;
+                    //cout << "FOUNDED SPAN START " << i << " ; " << seedY-1 << endl;
                     sp = getSpan(i, seedY-1, lastColor);
                     stack.push(sp);
                     i = sp.right;
@@ -169,11 +148,11 @@ void ImageWidget::fillHexagon(int x0, int y0, QColor lastColor, QColor newColor)
 }
 
 void ImageWidget::drawField()
-{
+{        
     for (auto h : hexagons){
         drawHexagon(&h);
         if (h.colored){
-            fillHexagon(h.x0, h.y0, backgroundColor, cellColor);
+            fillArea(h.x0, h.y0, backgroundColor, cellColor);
         }
     }
 }
@@ -192,7 +171,7 @@ void ImageWidget::createHexagonField(int m, int n)
         for (j = 0; j < lim; ++j){
             GeomHexagon hexagon(curX, curY);
             createHexagonVertices(&hexagon);
-            hexagons.push_back(hexagon);            
+            hexagons.push_back(hexagon);
             curX += stepX;
         }
         curY += 1.5 * hexagonR;
@@ -232,7 +211,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
         int curY = y0;
         int i, error = 0;
         if (x1 > x0){
-            for (i = x0; i <= x1; ++i){////////////////
+            for (i = x0; i <= x1; ++i){
                 image->setPixelColor(i, curY, color);
                 error += 2*dy;
                 if (error >= dx){
@@ -288,35 +267,25 @@ void ImageWidget::paintEvent(QPaintEvent*)
 
     drawField();
     p.drawImage(0, 0, *image);
-    /*uchar *bits = im.bits();
-    for (i = 0; i < w; i++){
-        for (j = 0; j < h; j++){
-            //for(k = 0; k < 4; k++){
-                //bits[k + i*4 + j*w*4] = 200;
-            //}
-        }
-    }
-    */
+
     //dx > dy
-    /*drawLine(200, 100, 300, 70); //up right
-    drawLine(200, 100, 100, 70); //up leftt
-    drawLine(200, 100, 300, 130); //down right
-    drawLine(200, 100, 100, 130); //down left
-    //dx < dy
-    drawLine(200, 100, 220, 30); //up right
-    drawLine(200, 100, 180, 30); //up leftt
-    drawLine(200, 100, 220, 170); //down right
-    drawLine(200, 100, 180, 170); //down left
-    // dx = 0 || dy = 0
-    drawLine(200, 100, 200, 50); //up
-    drawLine(200, 100, 200, 150); //down
-    drawLine(200, 100, 250, 100); //right
-    drawLine(200, 100, 150, 100); //down
+    /*  drawLine(200, 100, 300, 70, borderColor); //up right
+        drawLine(200, 100, 100, 70, borderColor); //up leftt
+        drawLine(200, 100, 300, 130, borderColor); //down right
+        drawLine(200, 100, 100, 130, borderColor); //down left
+        //dx < dy
+        drawLine(200, 100, 220, 30, borderColor); //up right
+        drawLine(200, 100, 180, 30, borderColor); //up leftt
+        drawLine(200, 100, 220, 170, borderColor); //down right
+        drawLine(200, 100, 180, 170, borderColor); //down left
+        // dx = 0 || dy = 0
+        drawLine(200, 100, 200, 50, borderColor); //up
+        drawLine(200, 100, 200, 150, borderColor); //down
+        drawLine(200, 100, 250, 100, borderColor); //right
+        drawLine(200, 100, 150, 100, borderColor); //down
+        fillArea(10, 10, backgroundColor, cellColor);
 */
-
 }
-
-
 
 void ImageWidget::mousePressEvent(QMouseEvent *event)
 {
