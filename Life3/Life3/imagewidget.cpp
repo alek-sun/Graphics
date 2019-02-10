@@ -78,8 +78,7 @@ void ImageWidget::setHexagonColored(int mx, int my)
         double cx = mx - hexagons[j].x0;
         double cy = my - hexagons[j].y0;
 
-        cout << "--------------------------------" << endl << "cx ( " << cx << " ; " << cy << " )" << endl;
-
+        //cout << "--------------------------------" << endl << "cx ( " << cx << " ; " << cy << " )" << endl;
         //check hexagons
 
         for (i = 0; i < 6; ++i){
@@ -93,8 +92,7 @@ void ImageWidget::setHexagonColored(int mx, int my)
 
             //proection
             double scalar = (cx*bx + cy*by) / (bx*bx + by*by);
-            cout << "scalar = " << scalar << endl;
-
+            //cout << "scalar = " << scalar << endl;
             if (abs(scalar) > 1) { // -1
                 draw = false;
                 break;
@@ -103,7 +101,7 @@ void ImageWidget::setHexagonColored(int mx, int my)
 
         if (draw){
             hexagons[j].colored = true;
-            cout << hexagons[j].x0 << " " << hexagons[j].y0 << " --------------------------------------->>>>>>>>" << hexagons[j].colored << endl;
+            //cout << hexagons[j].x0 << " " << hexagons[j].y0 << " --------------------------------------->>>>>>>>" << hexagons[j].colored << endl;
         }
     }
 }
@@ -119,26 +117,61 @@ void ImageWidget::createHexagonVertices(GeomHexagon* h)
     }
 }
 
+void ImageWidget::pushSurround(int leftX, int yLevel, stack<ImageWidget::Span>, QColor last, QColor newColor)
+{
+
+}
+
 //Fill game coordinates here Map?
 void ImageWidget::fillHexagon(int x0, int y0, QColor lastColor, QColor newColor)
 {
+    int seedY, i;
+    stack<Span> stack;
+
+    Span curSpan, sp;
     Span firstSpan = getSpan(x0, y0, lastColor);
+    stack.push(firstSpan);
 
-    int lastLeft = firstSpan.left;
-    cout << "left = " << lastLeft << endl;
+    while (!stack.empty()){
+        curSpan = stack.top();
+        stack.pop();
+        seedY = curSpan.y;
+        int Left = curSpan.left;
+        cout << "====================================> Y = " << curSpan.y << endl;
 
-    int lastRight = firstSpan.right;
-    cout << "right = " << lastRight << endl;
+        int Right = curSpan.right;
+        cout << "left = " << Left << endl;
 
-    drawLine(lastLeft, y0, lastRight, y0, newColor);
-    //Span sp = getSpan(lastLeft.)
+        cout << "right = " << Right << endl;
+
+        drawLine(curSpan.left, seedY, curSpan.right, seedY, newColor);
+
+        for (i = curSpan.left; i <= curSpan.right; ++i){
+            if (image->pixelColor(i, seedY+1) == lastColor){
+                cout << "FOUNDED SPAN START " << i << " ; " << seedY+1 << endl;
+                sp = getSpan(i, seedY+1, lastColor);
+                stack.push(sp);
+                i = sp.right;
+            }
+
+        }
+        for (i = curSpan.left; i <= curSpan.right; ++i){
+            if (seedY > 0){
+                if (image->pixelColor(i, seedY-1) == lastColor){
+                    cout << "FOUNDED SPAN START " << i << " ; " << seedY-1 << endl;
+                    sp = getSpan(i, seedY-1, lastColor);
+                    stack.push(sp);
+                    i = sp.right;
+                }
+            }
+        }
+    }
 }
 
 void ImageWidget::drawField()
 {
     for (auto h : hexagons){
         drawHexagon(&h);
-        cout << h.x0 << " " << h.y0 << " ===================>>>>>>>>" << h.colored << endl;
         if (h.colored){
             fillHexagon(h.x0, h.y0, backgroundColor, cellColor);
         }
@@ -176,7 +209,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
         int curY = x0;
         int i, error = 0;
         if (y1 > y0){
-            for (i = y0; i < y1; ++i){
+            for (i = y0; i <= y1; ++i){
                 image->setPixelColor(curY, i, color);
                 error += 2*dx;
                 if (error >= dy){
@@ -185,7 +218,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
                 }
             }
         } else {
-            for (i = y0; i > y1; --i){
+            for (i = y0; i >= y1; --i){
                 image->setPixelColor(curY, i, color);
                 error += 2*dx;
                 if (error >= dy){
@@ -199,7 +232,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
         int curY = y0;
         int i, error = 0;
         if (x1 > x0){
-            for (i = x0; i < x1; ++i){
+            for (i = x0; i <= x1; ++i){////////////////
                 image->setPixelColor(i, curY, color);
                 error += 2*dy;
                 if (error >= dx){
@@ -208,7 +241,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
                 }
             }
         } else {
-            for (i = x0; i > x1; --i){
+            for (i = x0; i >= x1; --i){
                 image->setPixelColor(i, curY, color);
                 error += 2*dy;
                 if (error >= dx){
@@ -226,20 +259,17 @@ ImageWidget::Span ImageWidget::getSpan(int x0, int y0, QColor lastColor)
     int y = y0;
     Span span;
     span.y = y0;
-    cout << lastColor.red() << " " << lastColor.green() << " " << lastColor.blue() << " || ";
-    cout << image->pixelColor(x, y).red() << " " << image->pixelColor(x, y).green() << " " << image->pixelColor(x, y).blue() << " || ";
-    while (image->pixelColor(x, y) == lastColor) {
+
+    while (x >= 0 && image->pixelColor(x, y) == lastColor) {
         x++;
     }
-    span.right = x;
-    x = x0-1;
-    cout << endl;
-    while (image->pixelColor(x, y) == lastColor) {
+    span.right = x-1;
+    x = x0;
+
+    while (x >= 0 && image->pixelColor(x, y) == lastColor) {
         x--;
-        cout <<".";
     }
-    cout << endl;
-    span.left = x;
+    span.left = x+1;
     return span;
 }
 

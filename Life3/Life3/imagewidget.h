@@ -10,6 +10,7 @@
 #include "geomhexagon.h"
 
 using std::vector;
+using std::stack;
 using std::pair;
 
 class ImageWidget : public QWidget
@@ -44,6 +45,7 @@ private:
     void createHexagonField(int m, int n);
     void setHexagonColored(int mx, int my);
     void createHexagonVertices(GeomHexagon *h);
+    void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
 signals:
 protected:
     void paintEvent(QPaintEvent* event);
