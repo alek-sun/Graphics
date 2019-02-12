@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/rec">
+        <file>step.png</file>
+        <file>images/step2.png</file>
+    </qresource>
+</RCC>

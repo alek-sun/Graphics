@@ -26,6 +26,7 @@ public:
     void drawField();   
     GameLogic *getGameLogic() const;
     void setGameLogic(GameLogic *value);
+    void drawText(QString text, int x, int y, int height, QColor color);
 
 private:
     typedef struct {

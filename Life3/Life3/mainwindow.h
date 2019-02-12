@@ -25,6 +25,8 @@ private:
 signals:
 protected:
     void resizeEvent(QResizeEvent *);
+private slots:
+    void on_actionStep_triggered();
 };
 
 #endif // MAINWINDOW_H

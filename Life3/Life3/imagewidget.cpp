@@ -9,12 +9,13 @@ using std::endl;
 ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent)
 {
     recentlyBirthColor.setRgb(100, 0, 200, 120);
+    recentlyDieColor.setRgb(100, 0, 100, 100);
+    longBirthColor.setRgb(200, 0, 100, 100);
+    longDieColor.setRgb(100, 0, 100, 50);
     borderColor.setRgb(0, 0, 0, 255);
     backgroundColor.setRgb(255,255,255,255);
     image = new QImage(width(), height(), QImage::Format_ARGB32);
     bits = image->bits();
-    gameLogic = new GameLogic(5,5);
-    cout << "created" << endl;
 }
 
 void ImageWidget::drawHexagonLines(Cell* h)
@@ -26,7 +27,7 @@ void ImageWidget::drawHexagonLines(Cell* h)
     }
 
     for (i = 0; i < 6; ++i){
-        qDebug() << 2 << i;
+
         if (i != 5){
             drawLine(h->x0 + h->vert[i].first,
                      h->y0 + h->vert[i].second,
@@ -41,7 +42,7 @@ void ImageWidget::drawHexagonLines(Cell* h)
                      borderColor);
         }
     }
-    qDebug() << 3;
+
 }
 
 GameLogic *ImageWidget::getGameLogic() const
@@ -53,6 +54,16 @@ void ImageWidget::setGameLogic(GameLogic *value)
 {
     gameLogic = value;
     createHexagonField(gameLogic->m, gameLogic->n);
+    gameLogic->step();
+}
+
+void ImageWidget::drawText(QString text, int x, int y, int height, QColor color)
+{
+    QPainter painter;
+    painter.begin(image);
+    painter.setPen(color);
+    painter.setFont(QFont("Times", height, QFont::Bold));
+    painter.drawText(x-text.size()*height + 2, y-height, text.size()*2*height, height*2, Qt::AlignCenter | Qt::AlignHCenter, text);
 }
 
 //        int globalX0 = static_cast<int>(x0 + bufX);
@@ -86,14 +97,16 @@ void ImageWidget::setHexagonColored(int mx, int my)
             //proection
             double scalar = (cx*bx + cy*by) / (bx*bx + by*by);
 
-            if (abs(scalar) >= 1) { // -1
+            if (abs(scalar) >= 1) {
                 draw = false;
                 break;
             }
         }
-
+        //TODO add renew impact
         if (draw){
+            gameLogic->curState[j].isAlive = true;
             gameLogic->curState[j].state = Cell::RECENTLY_BIRTH;
+            gameLogic->calculateAllImpact();
         }
     }
 }
@@ -168,33 +181,40 @@ void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
 
 void ImageWidget::drawField()
 {        
-    int i=0;
 
     for (auto h : gameLogic->curState){
-        ++i;
 
         drawHexagonLines(&h);
         switch (h.state){
             case h.RECENTLY_BIRTH :
                 fillArea(h.x0, h.y0, h.lastColor, recentlyBirthColor);
+                h.lastColor = recentlyBirthColor;
                 break;
             case h.LONG_BIRTH :
                 fillArea(h.x0, h.y0, h.lastColor, longBirthColor);
+                h.lastColor = longBirthColor;
                 break;
             case h.LONG_DIE :
                 fillArea(h.x0, h.y0, h.lastColor, longDieColor);
+                h.lastColor = longDieColor;
                 break;
             case h.RECENTLY_DIE :
                 fillArea(h.x0, h.y0, h.lastColor, recentlyDieColor);
+                h.lastColor = recentlyDieColor;
                 break;
             case h.DIE :
                 fillArea(h.x0, h.y0, h.lastColor, backgroundColor);
+                h.lastColor = backgroundColor;
+                break;
+            default:
+                fillArea(h.x0, h.y0, h.lastColor, backgroundColor);
+                h.lastColor = backgroundColor;
             }
-        if (displayImpact){
-
-
+        if (displayImpact){            
+            //drawText(QString::number(h.x), h.x0 - gameLogic->k/2, h.y0, gameLogic->k/4, borderColor);
+            // drawText(QString::number(h.y), h.x0 + gameLogic->k/2, h.y0, gameLogic->k/4, borderColor);
+            drawText(QString::number(h.impact), h.x0, h.y0, gameLogic->k/2, borderColor);
         }
-        cout << "iter completed " << i << endl;
     }
 }
 
@@ -211,7 +231,7 @@ void ImageWidget::createHexagonField(int m, int n)
         curX = startX + r * (i % 2);
         lim = m - i % 2;
         for (j = 0; j < lim; ++j){
-            Cell hexagon(curX, curY, i, j);
+            Cell hexagon(curX, curY, j, i);
             createHexagonVertices(&hexagon);
             gameLogic->curState.push_back(hexagon);
             curX += stepX;
@@ -300,11 +320,12 @@ void ImageWidget::paintEvent(QPaintEvent*)
 
     int i, j;
     image = new QImage(width(), height(), QImage::Format_ARGB32);
+    //resize(static_cast<int>(gameLogic->m*round(sqrt(3)/2*gameLogic->k)), 2*gameLogic->n*gameLogic->k);
     bits = image->bits();
 
     QTime t = QTime::currentTime();
-    for (i = 0; i < width(); ++i){
-        for (j = 0; j < height(); ++j){
+    for (i = 0; i < 2*gameLogic->m*round(sqrt(3)/2*gameLogic->k); ++i){
+        for (j = 0; j < 1.61*gameLogic->n*gameLogic->k; ++j){
             setPixelColor(i, j, backgroundColor);
         }
     }

@@ -29,13 +29,23 @@ SOURCES += \
         mainwindow.cpp \
     imagewidget.cpp \
     gamelogic.cpp \
-    cell.cpp
+    cell.cpp \
+    a.cpp \
+    cell.cpp \
+    gamelogic.cpp \
+    imagewidget.cpp \
+    main.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     imagewidget.h \
     gamelogic.h \
-    cell.h
+    cell.h \
+    cell.h \
+    gamelogic.h \
+    imagewidget.h \
+    mainwindow.h
 
 FORMS += \
         mainwindow.ui
@@ -44,3 +54,10 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    recourse.qrc
+
+DISTFILES += \
+    images/step.png \
+    images/step2.png

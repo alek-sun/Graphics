@@ -41,16 +41,16 @@
     <widget class="ImageWidget" name="scrollAreaWidgetContents">
      <property name="geometry">
       <rect>
-       <x>-818</x>
-       <y>-928</y>
-       <width>1200</width>
-       <height>1200</height>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>600</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>1200</width>
-       <height>1200</height>
+       <width>800</width>
+       <height>600</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -71,6 +71,16 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Действия</string>
+    </property>
+    <addaction name="actionStep"/>
+    <addaction name="actionRun"/>
+    <addaction name="actionStop"/>
+    <addaction name="actionClear"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -79,8 +89,42 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionStep"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionStep">
+   <property name="icon">
+    <iconset resource="recourse.qrc">
+     <normaloff>:/new/rec/images/step2.png</normaloff>:/new/rec/images/step2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Step</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Step forward&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -89,12 +133,11 @@
    <extends>QWidget</extends>
    <header>imagewidget.h</header>
    <container>1</container>
-   <slots>
-    <slot>recvGameLogic(GameLogic*)</slot>
-   </slots>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="recourse.qrc"/>
+ </resources>
  <connections/>
  <slots>
   <signal>setGameLogic(GameLogic*)</signal>

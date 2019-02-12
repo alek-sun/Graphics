@@ -1,6 +1,7 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
 #include <vector>
+#include <iostream>
 #include "cell.h"
 
 class GameLogic
@@ -16,7 +17,7 @@ public:
     double liveEnd;
     double birthBegin;
     double birthEnd;
-    double firstImapact;
+    double firstImpact;
     double secondImpact;
 
     static const int XOR_MODE = 1;
@@ -28,9 +29,11 @@ public:
     void run();
     void stop();
     void clear();
+    void calculateAllImpact();
 
 private:
-
+    double findCellImpact(int x, int y);
+    void renewImpact(Cell* cell);
 };
 
 #endif // GAMELOGIC_H
