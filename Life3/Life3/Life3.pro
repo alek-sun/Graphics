@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     imagewidget.cpp \
-    geomhexagon.cpp
+    gamelogic.cpp \
+    cell.cpp
 
 HEADERS += \
         mainwindow.h \
     imagewidget.h \
-    geomhexagon.h
+    gamelogic.h \
+    cell.h
 
 FORMS += \
         mainwindow.ui

@@ -7,7 +7,11 @@
 #include <stack>
 #include <vector>
 #include <iostream>
-#include "geomhexagon.h"
+#include <QTime>
+#include <QDebug>
+
+#include "cell.h"
+#include "gamelogic.h"
 
 using std::vector;
 using std::stack;
@@ -19,30 +23,40 @@ class ImageWidget : public QWidget
 public:
     explicit ImageWidget(QWidget *parent = nullptr);
 
-    void fillArea(int x0, int y0, QColor lastColor, QColor c);
-    void drawField();
-    void drawHexagon(GeomHexagon* hexagon);
+    void drawField();   
+    GameLogic *getGameLogic() const;
+    void setGameLogic(GameLogic *value);
+
 private:
     typedef struct {
         int left, right, y;
     } Span;
 
     QColor borderColor;
-    QColor cellColor;
+    QColor recentlyBirthColor;
+    QColor recentlyDieColor;
+    QColor longBirthColor;
+    QColor longDieColor;
     QColor backgroundColor;
-    QImage* image;
+    bool displayImpact;
 
-    int hexagonR;
-    //int m, n;
+    QImage* image;
+    uchar* bits;
+    GameLogic* gameLogic;
+
     double PI = 3.141592;
-    vector<GeomHexagon> hexagons;
 
     void drawLine(int x0, int y0, int x1, int y1, QColor lineColor);
     Span getSpan(int x0, int y0, QColor lastColor);
     void createHexagonField(int m, int n);
     void setHexagonColored(int mx, int my);
-    void createHexagonVertices(GeomHexagon *h);
+    void createHexagonVertices(Cell *h);
     void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
+    void drawHexagonLines(Cell* hexagon);
+    void fillArea(int x0, int y0, QColor lastColor, QColor c);
+
+    void setPixelColor(int x, int y, QColor color);
+    QColor pixelColor(int x, int y);
 signals:
 protected:
     void paintEvent(QPaintEvent* event);

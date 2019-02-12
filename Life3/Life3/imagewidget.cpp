@@ -1,4 +1,5 @@
 #include "imagewidget.h"
+
 using std::stack;
 using std::pair;
 using std::cin;
@@ -7,38 +8,52 @@ using std::endl;
 
 ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent)
 {
-    cellColor.setRgb(100, 0, 200, 120);
+    recentlyBirthColor.setRgb(100, 0, 200, 120);
     borderColor.setRgb(0, 0, 0, 255);
     backgroundColor.setRgb(255,255,255,255);
-    hexagonR = 40;
     image = new QImage(width(), height(), QImage::Format_ARGB32);
-    createHexagonField(5,8);
+    bits = image->bits();
+    gameLogic = new GameLogic(5,5);
+    cout << "created" << endl;
 }
 
-void ImageWidget::drawHexagon(GeomHexagon* h)
+void ImageWidget::drawHexagonLines(Cell* h)
 {
     int i;
     if (h->vert.size() != 6){
         cout << "ERR" << endl;
         return;
     }
+
     for (i = 0; i < 6; ++i){
+        qDebug() << 2 << i;
         if (i != 5){
             drawLine(h->x0 + h->vert[i].first,
                      h->y0 + h->vert[i].second,
                      h->x0 + h->vert[i+1].first,
-                    h->y0 + h->vert[i+1].second,
-                    borderColor);
+                     h->y0 + h->vert[i+1].second,
+                     borderColor);
         } else {
             drawLine(h->x0 + h->vert[i].first,
                      h->y0 + h->vert[i].second,
                      h->x0 + h->vert[0].first,
-                    h->y0 + h->vert[0].second,
-                    borderColor);
+                     h->y0 + h->vert[0].second,
+                     borderColor);
         }
     }
+    qDebug() << 3;
 }
 
+GameLogic *ImageWidget::getGameLogic() const
+{
+    return gameLogic;
+}
+
+void ImageWidget::setGameLogic(GameLogic *value)
+{
+    gameLogic = value;
+    createHexagonField(gameLogic->m, gameLogic->n);
+}
 
 //        int globalX0 = static_cast<int>(x0 + bufX);
 //        int globalY0 = static_cast<int>(y0 + bufY);
@@ -51,14 +66,13 @@ void ImageWidget::setHexagonColored(int mx, int my)
 {
     bool draw;
     int i, j, next_index;
-    for (j = 0; j < hexagons.size(); ++j){
+    for (j = 0; j < gameLogic->curState.size(); ++j){
         draw = true;
 
-        double cx = mx - hexagons[j].x0;
-        double cy = my - hexagons[j].y0;
+        double cx = mx - gameLogic->curState[j].x0;
+        double cy = my - gameLogic->curState[j].y0;
 
-        //cout << "--------------------------------" << endl << "cx ( " << cx << " ; " << cy << " )" << endl;
-        //check hexagons
+        //check gameLogic->curState
 
         for (i = 0; i < 6; ++i){
             if (i != 5){
@@ -66,12 +80,12 @@ void ImageWidget::setHexagonColored(int mx, int my)
             } else {
                 next_index = 0;
             }
-            double bx = round(hexagons[j].vert[i].first + hexagons[j].vert[next_index].first)/2.0;
-            double by = round(hexagons[j].vert[i].second + hexagons[j].vert[next_index].second)/2.0;
+            double bx = round(gameLogic->curState[j].vert[i].first + gameLogic->curState[j].vert[next_index].first)/2.0;
+            double by = round(gameLogic->curState[j].vert[i].second + gameLogic->curState[j].vert[next_index].second)/2.0;
 
             //proection
             double scalar = (cx*bx + cy*by) / (bx*bx + by*by);
-            //cout << "scalar = " << scalar << endl;
+
             if (abs(scalar) >= 1) { // -1
                 draw = false;
                 break;
@@ -79,65 +93,70 @@ void ImageWidget::setHexagonColored(int mx, int my)
         }
 
         if (draw){
-            hexagons[j].colored = true;
-            //cout << hexagons[j].x0 << " " << hexagons[j].y0 << " --------------------------------------->>>>>>>>" << hexagons[j].colored << endl;
+            gameLogic->curState[j].state = Cell::RECENTLY_BIRTH;
         }
     }
 }
 
-void ImageWidget::createHexagonVertices(GeomHexagon* h)
+void ImageWidget::createHexagonVertices(Cell* h)
 {
     int i;
     double x, y;
     for (i = 0; i < 6; ++i){
-        x = round(hexagonR * cos(PI * i/3 + PI/6));
-        y = round(hexagonR * sin(PI * i/3 + PI/6));
+        x = round(gameLogic->k * cos(PI * i/3 + PI/6));
+        y = round(gameLogic->k * sin(PI * i/3 + PI/6));
         h->vert.push_back(pair<int,int> (x, y));
     }
 }
 
-void ImageWidget::pushSurround(int leftX, int yLevel, stack<ImageWidget::Span>, QColor last, QColor newColor)
-{
 
+void ImageWidget::setPixelColor(int x, int y, QColor color)
+{
+    int i = x + y*width();
+    i *= 4;
+    bits[i] = color.blue();
+    bits[i + 1] = color.green();
+    bits[i + 2] = color.red();
+    bits[i + 3] = color.alpha();
 }
 
-//Fill game coordinates here Map?
+QColor ImageWidget::pixelColor(int x, int y)
+{
+    int i = x + y*width();
+    i *= 4;
+    return QColor(bits[i + 2], bits[i + 1], bits[i], bits[i + 3]);
+}
+
 void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
 {
+    if (newColor == lastColor){
+        return;
+    }
     int seedY, i;
     stack<Span> stack;
-
     Span curSpan, sp;
     Span firstSpan = getSpan(x0, y0, lastColor);
     stack.push(firstSpan);
-
     while (!stack.empty()){
         curSpan = stack.top();
         stack.pop();
         seedY = curSpan.y;
-        int Left = curSpan.left;
-        //cout << "====================================> Y = " << curSpan.y << endl;
-
-        int Right = curSpan.right;
-        //cout << "left = " << Left << endl;
-
-        //cout << "right = " << Right << endl;
 
         drawLine(curSpan.left, seedY, curSpan.right, seedY, newColor);
 
         for (i = curSpan.left; i <= curSpan.right; ++i){
-            if (image->pixelColor(i, seedY+1) == lastColor){
-                //cout << "FOUNDED SPAN START " << i << " ; " << seedY+1 << endl;
-                sp = getSpan(i, seedY+1, lastColor);
+            QColor c = pixelColor(i, seedY+1);
+            if (pixelColor(i, seedY+1) == lastColor){
+                sp = getSpan(i, seedY+1, lastColor);                
                 stack.push(sp);
                 i = sp.right;
             }
 
         }
         for (i = curSpan.left; i <= curSpan.right; ++i){
+            QColor c = pixelColor(i, seedY-1);
             if (seedY > 0){
-                if (image->pixelColor(i, seedY-1) == lastColor){
-                    //cout << "FOUNDED SPAN START " << i << " ; " << seedY-1 << endl;
+                if (pixelColor(i, seedY-1) == lastColor){
                     sp = getSpan(i, seedY-1, lastColor);
                     stack.push(sp);
                     i = sp.right;
@@ -149,32 +168,55 @@ void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
 
 void ImageWidget::drawField()
 {        
-    for (auto h : hexagons){
-        drawHexagon(&h);
-        if (h.colored){
-            fillArea(h.x0, h.y0, backgroundColor, cellColor);
+    int i=0;
+
+    for (auto h : gameLogic->curState){
+        ++i;
+
+        drawHexagonLines(&h);
+        switch (h.state){
+            case h.RECENTLY_BIRTH :
+                fillArea(h.x0, h.y0, h.lastColor, recentlyBirthColor);
+                break;
+            case h.LONG_BIRTH :
+                fillArea(h.x0, h.y0, h.lastColor, longBirthColor);
+                break;
+            case h.LONG_DIE :
+                fillArea(h.x0, h.y0, h.lastColor, longDieColor);
+                break;
+            case h.RECENTLY_DIE :
+                fillArea(h.x0, h.y0, h.lastColor, recentlyDieColor);
+                break;
+            case h.DIE :
+                fillArea(h.x0, h.y0, h.lastColor, backgroundColor);
+            }
+        if (displayImpact){
+
+
         }
+        cout << "iter completed " << i << endl;
     }
 }
 
 void ImageWidget::createHexagonField(int m, int n)
 {
-    int curX = static_cast<int>(round(sqrt(3)/2*hexagonR));
+    gameLogic->curState.clear();
+    int curX = static_cast<int>(round(sqrt(3)/2*gameLogic->k));
     int r = curX;
     int stepX = 2*r;
     int startX = curX;
-    int curY = hexagonR;
+    int curY = gameLogic->k;
     int i, j, lim = m;
     for (i = 0; i < n; ++i){
         curX = startX + r * (i % 2);
         lim = m - i % 2;
         for (j = 0; j < lim; ++j){
-            GeomHexagon hexagon(curX, curY);
+            Cell hexagon(curX, curY, i, j);
             createHexagonVertices(&hexagon);
-            hexagons.push_back(hexagon);
+            gameLogic->curState.push_back(hexagon);
             curX += stepX;
         }
-        curY += 1.5 * hexagonR;
+        curY += 1.5 * gameLogic->k;
     }
 }
 
@@ -189,7 +231,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
         int i, error = 0;
         if (y1 > y0){
             for (i = y0; i <= y1; ++i){
-                image->setPixelColor(curY, i, color);
+                setPixelColor(curY, i, color);
                 error += 2*dx;
                 if (error >= dy){
                     curY += dirX;
@@ -198,7 +240,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
             }
         } else {
             for (i = y0; i >= y1; --i){
-                image->setPixelColor(curY, i, color);
+                setPixelColor(curY, i, color);
                 error += 2*dx;
                 if (error >= dy){
                     curY += dirX;
@@ -212,7 +254,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
         int i, error = 0;
         if (x1 > x0){
             for (i = x0; i <= x1; ++i){
-                image->setPixelColor(i, curY, color);
+                setPixelColor(i, curY, color);
                 error += 2*dy;
                 if (error >= dx){
                     curY += dirY;
@@ -221,7 +263,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
             }
         } else {
             for (i = x0; i >= x1; --i){
-                image->setPixelColor(i, curY, color);
+                setPixelColor(i, curY, color);
                 error += 2*dy;
                 if (error >= dx){
                     curY += dirY;
@@ -239,13 +281,13 @@ ImageWidget::Span ImageWidget::getSpan(int x0, int y0, QColor lastColor)
     Span span;
     span.y = y0;
 
-    while (x >= 0 && image->pixelColor(x, y) == lastColor) {
+    while (x >= 0 && pixelColor(x, y) == lastColor) {
         x++;
     }
     span.right = x-1;
     x = x0;
 
-    while (x >= 0 && image->pixelColor(x, y) == lastColor) {
+    while (x >= 0 && pixelColor(x, y) == lastColor) {
         x--;
     }
     span.left = x+1;
@@ -258,14 +300,19 @@ void ImageWidget::paintEvent(QPaintEvent*)
 
     int i, j;
     image = new QImage(width(), height(), QImage::Format_ARGB32);
+    bits = image->bits();
 
+    QTime t = QTime::currentTime();
     for (i = 0; i < width(); ++i){
         for (j = 0; j < height(); ++j){
-            image->setPixelColor(i, j, backgroundColor);
+            setPixelColor(i, j, backgroundColor);
         }
     }
 
     drawField();
+
+    qDebug() << QTime::currentTime().msecsTo(t);
+
     p.drawImage(0, 0, *image);
 
     //dx > dy

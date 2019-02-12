@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "imagewidget.h"
+#include "gamelogic.h"
+#include "cell.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,8 +18,10 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private:
     Ui::MainWindow *ui;
+    GameLogic* gameLogic;
 signals:
 protected:
     void resizeEvent(QResizeEvent *);
