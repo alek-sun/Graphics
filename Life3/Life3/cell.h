@@ -23,9 +23,7 @@ class Cell
 
         int x;
         int y;
-        double impact;
-        int state;
-        bool isAlive;
+
 
         static const int DIE = 0;
         static const int RECENTLY_BIRTH = 1;
@@ -34,8 +32,20 @@ class Cell
         static const int LONG_DIE = 4;
 
         void setState(double liveBegin, double liveEnd, double birthBegin, double birthEnd);
+        void setState(int state);
 
-    private:
+        bool getIsAlive() const;
+        void setIsAlive(bool value);
+
+        int getState() const;
+
+        double getImpact() const;
+        void setImpact(double value);
+
+private:
+        double impact;
+        int state;
+        bool isAlive;
 
 };
 

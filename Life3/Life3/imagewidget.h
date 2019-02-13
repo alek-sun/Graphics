@@ -28,6 +28,11 @@ public:
     void setGameLogic(GameLogic *value);
     void drawText(QString text, int x, int y, int height, QColor color);
 
+    bool displayImpact;
+
+
+    void fillCell(Cell *cell);
+    Cell *setHexagonColored(int mx, int my);
 private:
     typedef struct {
         int left, right, y;
@@ -39,18 +44,21 @@ private:
     QColor longBirthColor;
     QColor longDieColor;
     QColor backgroundColor;
-    bool displayImpact;
+    QColor defaultWidgetColor = QColor(205,205,205,205);
+
+    int h;
+    int w;
 
     QImage* image;
     uchar* bits;
     GameLogic* gameLogic;
+    bool mousePressed = false;
 
     double PI = 3.141592;
 
     void drawLine(int x0, int y0, int x1, int y1, QColor lineColor);
     Span getSpan(int x0, int y0, QColor lastColor);
-    void createHexagonField(int m, int n);
-    void setHexagonColored(int mx, int my);
+    void createHexagonField(int m, int n);    
     void createHexagonVertices(Cell *h);
     void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
     void drawHexagonLines(Cell* hexagon);
@@ -58,10 +66,13 @@ private:
 
     void setPixelColor(int x, int y, QColor color);
     QColor pixelColor(int x, int y);
+    //Cell &setHexagonColored(int mx, int my);
 signals:
 protected:
     void paintEvent(QPaintEvent* event);
     void mousePressEvent(QMouseEvent * event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 public slots:
 };
 

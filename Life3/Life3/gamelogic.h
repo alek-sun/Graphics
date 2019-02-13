@@ -26,10 +26,9 @@ public:
     vector<Cell> curState;
 
     void step();
-    void run();
-    void stop();
     void clear();
-    void calculateAllImpact();
+    void changeColors();
+    void calculateImpacts();
 
 private:
     double findCellImpact(int x, int y);

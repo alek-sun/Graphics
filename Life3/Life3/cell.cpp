@@ -7,9 +7,9 @@ Cell::Cell(int x0, int y0, int x, int y)
     this->x = x;
     this->y = y;
     isAlive = false;
-    lastColor = QColor(255, 255, 255, 255);
+    lastColor = QColor(205, 205, 205, 205);
     impact = 0.0;
-    state = DIE;
+    state = -1;
 }
 
 Cell::Cell(const Cell &c)
@@ -25,28 +25,56 @@ Cell::Cell(const Cell &c)
     impact = c.impact;
 }
 
+double Cell::getImpact() const
+{
+    return impact;
+}
+
+void Cell::setImpact(double value)
+{
+    impact = value;
+}
+
+int Cell::getState() const
+{
+    return state;
+}
+
+bool Cell::getIsAlive() const
+{
+    return isAlive;
+}
+
+void Cell::setIsAlive(bool value)
+{
+    isAlive = value;
+}
+
 void Cell::setState(double liveBegin, double liveEnd, double birthBegin, double birthEnd)
 {
     if (impact >= birthBegin && impact <= birthEnd){
         if (isAlive){
             state = RECENTLY_BIRTH;
-            return;
         } else {
             state = RECENTLY_DIE;
-            return;
+
         }
-    }
-    if ((impact >= liveBegin && impact < birthBegin) ||
+    } else if ((impact >= liveBegin && impact < birthBegin) ||
             (impact > birthEnd && impact <= liveEnd)){
         if (isAlive){
             state = LONG_BIRTH;
-            return;
+
         } else {
             state = LONG_DIE;
-            return;
         }
+    } else {
+        state = DIE;
     }
-    state = DIE;
+}
+
+void Cell::setState(int state)
+{
+     this->state = state;
 }
 
 //bool Cell::isDie()
