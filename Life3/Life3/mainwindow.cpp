@@ -9,11 +9,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    int m = 10, n = 10;
+    int m = 13, n = 8;
     gameLogic = new GameLogic(m, n);
+    //qDebug() << 2*(gameLogic->m + 1)*round(sqrt(3)/2*gameLogic->k), 2*gameLogic->n*gameLogic->k;
+    ui->scrollAreaWidgetContents->setMinimumSize(2+2*(gameLogic->m)*round(sqrt(3)/2*gameLogic->k), 1.6*gameLogic->n*gameLogic->k);
+    ui->scrollAreaWidgetContents->setMaximumSize(2+2*(gameLogic->m)*round(sqrt(3)/2*gameLogic->k), 1.6*gameLogic->n*gameLogic->k);
+   //qDebug() <<ui->scrollAreaWidgetContents->minimumSize();
     ui->scrollAreaWidgetContents->setGameLogic(gameLogic);
     timer = new QTimer();
-    timer->setInterval(500);
+    timer->setInterval(800);
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_actionStep_triggered()));
 
 }
