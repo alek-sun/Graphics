@@ -7,6 +7,7 @@
 #include "imagewidget.h"
 #include "gamelogic.h"
 #include "cell.h"
+#include "settingsdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    SettingsDialog* settings;
     GameLogic* gameLogic;
     QTimer* timer;
 signals:
@@ -37,6 +39,8 @@ private slots:
 
     void on_actionRun_toggled(bool arg1);
     void on_actionReplace_toggled(bool arg1);
+    void on_actionSave_to_file_triggered();
+    void on_actionOpen_file_triggered();
 };
 
 #endif // MAINWINDOW_H

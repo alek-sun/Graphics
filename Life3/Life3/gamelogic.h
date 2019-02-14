@@ -20,6 +20,10 @@ public:
     double firstImpact;
     double secondImpact;
 
+    int newM;
+    int newN;
+    bool paramsChanged = false;
+
     static const int XOR_MODE = 1;
     static const int REPLACE_MODE = 0;
 

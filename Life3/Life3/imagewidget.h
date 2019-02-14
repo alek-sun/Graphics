@@ -30,9 +30,9 @@ public:
 
     bool displayImpact;
 
-
     void fillCell(Cell *cell);
-    Cell *setHexagonColored(int mx, int my);
+    void setHexagonColored(int mx, int my);
+    void changeFieldSize();
 private:
     typedef struct {
         int left, right, y;
@@ -58,7 +58,7 @@ private:
 
     void drawLine(int x0, int y0, int x1, int y1, QColor lineColor);
     Span getSpan(int x0, int y0, QColor lastColor);
-    void createHexagonField(int m, int n);    
+    void createHexagonField(int m, int n);
     void createHexagonVertices(Cell *h);
     void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
     void drawHexagonLines(Cell* hexagon);

@@ -9,13 +9,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    int m = 13, n = 8;
+
+    int m = 20, n = 20;
+
     gameLogic = new GameLogic(m, n);
-    //qDebug() << 2*(gameLogic->m + 1)*round(sqrt(3)/2*gameLogic->k), 2*gameLogic->n*gameLogic->k;
-    ui->scrollAreaWidgetContents->setMinimumSize(2+2*(gameLogic->m)*round(sqrt(3)/2*gameLogic->k), 1.6*gameLogic->n*gameLogic->k);
-    ui->scrollAreaWidgetContents->setMaximumSize(2+2*(gameLogic->m)*round(sqrt(3)/2*gameLogic->k), 1.6*gameLogic->n*gameLogic->k);
-   //qDebug() <<ui->scrollAreaWidgetContents->minimumSize();
+
+    int r = round(sqrt(3)/2*gameLogic->k);
+    int R = gameLogic->k;
+    int c = floor(gameLogic->newN/2);
+    int h = (c + gameLogic->newN % 2) * 2*R + c*R +R/2 + 2;
+    int w = 2+2*(gameLogic->newM)*r;
+
+    ui->scrollAreaWidgetContents->setMinimumSize(w, h);
+    ui->scrollAreaWidgetContents->setMaximumSize(w, h);
     ui->scrollAreaWidgetContents->setGameLogic(gameLogic);
+
     timer = new QTimer();
     timer->setInterval(800);
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_actionStep_triggered()));
@@ -27,7 +35,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 
 void MainWindow::resizeEvent(QResizeEvent *)
@@ -51,7 +58,9 @@ void MainWindow::on_actionClear_triggered()
 
 void MainWindow::on_actionGame_settings_triggered()
 {
-
+    settings = new SettingsDialog(this);
+    settings->setGame(gameLogic);
+    settings->exec();
 }
 
 void MainWindow::on_actionShow_impact_toggled(bool checked)
@@ -82,4 +91,14 @@ void MainWindow::on_actionReplace_toggled(bool checked)
     } else {
         gameLogic->mode = GameLogic::REPLACE_MODE;
     }
+}
+
+void MainWindow::on_actionSave_to_file_triggered()
+{
+
+}
+
+void MainWindow::on_actionOpen_file_triggered()
+{
+
 }

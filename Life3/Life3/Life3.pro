@@ -34,7 +34,8 @@ SOURCES += \
     gamelogic.cpp \
     imagewidget.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settingsdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,10 +45,12 @@ HEADERS += \
     cell.h \
     gamelogic.h \
     imagewidget.h \
-    mainwindow.h
+    mainwindow.h \
+    settingsdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    settingsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
