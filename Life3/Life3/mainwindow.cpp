@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 using std::cout;
 using std:: endl;
 
@@ -95,10 +96,24 @@ void MainWindow::on_actionReplace_toggled(bool checked)
 
 void MainWindow::on_actionSave_to_file_triggered()
 {
+    QUrl fileUrl =
+            QFileDialog::getSaveFileUrl(this,
+                                        "Open saved model");
+                                        //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
 
+    //FileSaver fparser(*gameLogic, fileUrl);
+    //fparser.parseState();
+    //ui->scrollAreaWidgetContents->repaint();
 }
 
 void MainWindow::on_actionOpen_file_triggered()
 {
+    QUrl fileUrl =
+            QFileDialog::getOpenFileUrl(this,
+                                        "Open saved model");
+                                        //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
 
+    FileParser fparser(gameLogic, fileUrl);
+    fparser.parseState();
+    ui->scrollAreaWidgetContents->repaint();
 }

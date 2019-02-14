@@ -8,6 +8,8 @@
 #include "gamelogic.h"
 #include "cell.h"
 #include "settingsdialog.h"
+#include <QFileDialog>
+#include "fileparser.h"
 
 namespace Ui {
 class MainWindow;

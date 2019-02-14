@@ -35,7 +35,8 @@ SOURCES += \
     imagewidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    fileparser.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS += \
     gamelogic.h \
     imagewidget.h \
     mainwindow.h \
-    settingsdialog.h
+    settingsdialog.h \
+    fileparser.h
 
 FORMS += \
         mainwindow.ui \
