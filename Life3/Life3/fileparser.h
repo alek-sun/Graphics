@@ -10,12 +10,13 @@
 #include <QDebug>
 
 
-class FileParser
+class FileDriver
 {
 public:
-    FileParser(GameLogic* game, QUrl filePath);
+    FileDriver(GameLogic* game, QUrl filePath);
 
-    bool parseState();
+    vector<pair<int, int> > parseState();
+    bool saveState();
 private:
     GameLogic* game;
     QUrl filePath;

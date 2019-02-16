@@ -79,17 +79,7 @@ void GameLogic::calculateImpacts()
 
 double GameLogic::findCellImpact(int x, int y)
 {
-//    for (auto cell : curState){
-//        if (cell.x == x && cell.y == y){
-//            if (cell.getIsAlive()){
-//                return 1.0;
-//            } else {
-//                return 0.0;
-//            }
-//        }
-//    }
-   // cout << "x = " <<  x << " y = " << y << endl;
-    if (x > 0 && y > 0 && x <= n-1 && y <= (m - 1 - y % 2)){
+    if (x >= 0 && y >= 0 && x <= n-1 && y <= (m - 1 - x % 2)){
         int c = floor(x/2);
         int x1 = (c + x % 2) * m + c * (m - 1);
         //cout << "x1 = " << x1 << "y = " << y << endl;

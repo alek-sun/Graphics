@@ -33,6 +33,12 @@ void SettingsDialog::setGame(GameLogic *g)
 void SettingsDialog::on_buttonBox_accepted()
 {
     int buf = ui->kEditBox->text().toInt();
+    if (buf > 60){
+        buf = 60;
+    }
+    if (buf < 5){
+        buf = 5;
+    }
     if (game->k != buf){
         game->paramsChanged = true;
         game->k = buf;

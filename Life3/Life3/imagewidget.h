@@ -27,6 +27,7 @@ public:
     GameLogic *getGameLogic() const;
     void setGameLogic(GameLogic *value);
     void drawText(QString text, int x, int y, int height, QColor color);
+    void createHexagonField(int m, int n);
 
     bool displayImpact;
 
@@ -58,7 +59,7 @@ private:
 
     void drawLine(int x0, int y0, int x1, int y1, QColor lineColor);
     Span getSpan(int x0, int y0, QColor lastColor);
-    void createHexagonField(int m, int n);
+
     void createHexagonVertices(Cell *h);
     void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
     void drawHexagonLines(Cell* hexagon);

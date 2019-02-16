@@ -10,21 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     int m = 20, n = 20;
-
     gameLogic = new GameLogic(m, n);
-
-    int r = round(sqrt(3)/2*gameLogic->k);
-    int R = gameLogic->k;
-    int c = floor(gameLogic->newN/2);
-    int h = (c + gameLogic->newN % 2) * 2*R + c*R +R/2 + 2;
-    int w = 2+2*(gameLogic->newM)*r;
-
-    ui->scrollAreaWidgetContents->setMinimumSize(w, h);
-    ui->scrollAreaWidgetContents->setMaximumSize(w, h);
     ui->scrollAreaWidgetContents->setGameLogic(gameLogic);
-
+    renewSize(m, n);
     timer = new QTimer();
     timer->setInterval(800);
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_actionStep_triggered()));
@@ -35,6 +24,19 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::renewSize(int m, int n)
+{
+    int r = round(sqrt(3)/2*gameLogic->k);
+    int R = gameLogic->k;
+    int c = floor(gameLogic->n/2);
+    int h = (c + gameLogic->n % 2) * 2*R + c*R + R/2 + 2;
+    int w = 2+2*(gameLogic->m)*r;
+
+    ui->scrollAreaWidgetContents->setMinimumSize(w, h);
+    ui->scrollAreaWidgetContents->setMaximumSize(w, h);
+
 }
 
 
@@ -101,9 +103,8 @@ void MainWindow::on_actionSave_to_file_triggered()
                                         "Open saved model");
                                         //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
 
-    //FileSaver fparser(*gameLogic, fileUrl);
-    //fparser.parseState();
-    //ui->scrollAreaWidgetContents->repaint();
+    FileDriver fsaver(gameLogic, fileUrl);
+    fsaver.saveState();
 }
 
 void MainWindow::on_actionOpen_file_triggered()
@@ -113,7 +114,32 @@ void MainWindow::on_actionOpen_file_triggered()
                                         "Open saved model");
                                         //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
 
-    FileParser fparser(gameLogic, fileUrl);
-    fparser.parseState();
+    if (fileUrl == QUrl(""))
+        return;
+    FileDriver fparser(gameLogic, fileUrl);
+    vector<pair<int, int>> coords = fparser.parseState();
+
+    ui->scrollAreaWidgetContents->createHexagonField(gameLogic->m, gameLogic->n);
+
+    for (auto xy : coords){
+        int c = floor(xy.first/2);
+        int x1 = (c + xy.first % 2) * gameLogic->m + c * (gameLogic->m - 1);
+        gameLogic->curState[x1+xy.second].setIsAlive(true);
+        gameLogic->curState[x1+xy.second].setState(Cell::RECENTLY_BIRTH);
+    }
+
+    gameLogic->calculateImpacts();
+    renewSize(gameLogic->m, gameLogic->n);
     ui->scrollAreaWidgetContents->repaint();
+}
+
+void MainWindow::on_actionGame_parametrs_triggered()
+{
+
+}
+
+void MainWindow::on_actionAuhtor_triggered()
+{
+    AboutDialog about;
+    about.exec();
 }

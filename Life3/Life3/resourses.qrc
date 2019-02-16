@@ -4,11 +4,14 @@
         <file>images/pause.png</file>
         <file>images/play.png</file>
         <file>images/run.png</file>
-        <file>images/step2.png</file>
         <file>images/settings.png</file>
-        <file>images/show_impact.png</file>
         <file>images/show_impact1.png</file>
         <file>images/game_mode.png</file>
+        <file>images/game.png</file>
+        <file>images/open.png</file>
+        <file>images/question.png</file>
+        <file>images/save.png</file>
+        <file>images/size.png</file>
     </qresource>
     <qresource prefix="/">
         <file>images/settings.png</file>

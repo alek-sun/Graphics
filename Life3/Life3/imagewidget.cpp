@@ -245,11 +245,13 @@ void ImageWidget::createHexagonField(int m, int n)
         lim = m - i % 2;
         for (j = 0; j < lim; ++j){
             Cell hexagon(curY, curX, i, j); //coords
+            //qDebug() << i << " ; " << j;
             createHexagonVertices(&hexagon);
             gameLogic->curState.push_back(hexagon);
             curY += stepY;
         }
         curX += 1.5 * gameLogic->k;
+        //qDebug() << "===========================";
     }
 }
 
@@ -287,7 +289,7 @@ void ImageWidget::changeFieldSize()
             }
             curY += stepY;
         }
-        cout << "=========================================" << endl;
+        //cout << "=========================================" << endl;
         curX += 1.5 * gameLogic->k;
     }
     gameLogic->curState = newState;

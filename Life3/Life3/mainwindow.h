@@ -10,6 +10,7 @@
 #include "settingsdialog.h"
 #include <QFileDialog>
 #include "fileparser.h"
+#include "aboutdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
+    void renewSize(int m, int n);
 private:
     Ui::MainWindow *ui;
     SettingsDialog* settings;
@@ -43,6 +44,8 @@ private slots:
     void on_actionReplace_toggled(bool arg1);
     void on_actionSave_to_file_triggered();
     void on_actionOpen_file_triggered();
+    void on_actionGame_parametrs_triggered();
+    void on_actionAuhtor_triggered();
 };
 
 #endif // MAINWINDOW_H

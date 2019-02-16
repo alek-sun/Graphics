@@ -36,7 +36,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingsdialog.cpp \
-    fileparser.cpp
+    fileparser.cpp \
+    aboutdialog.cpp \
+    dialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,11 +50,15 @@ HEADERS += \
     imagewidget.h \
     mainwindow.h \
     settingsdialog.h \
-    fileparser.h
+    fileparser.h \
+    aboutdialog.h \
+    dialog.h
 
 FORMS += \
         mainwindow.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    aboutdialog.ui \
+    dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -63,5 +69,4 @@ RESOURCES += \
     resourses.qrc
 
 DISTFILES += \
-    images/step.png \
-    images/step2.png
+    images/step.png
