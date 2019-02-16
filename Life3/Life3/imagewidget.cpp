@@ -52,7 +52,6 @@ GameLogic *ImageWidget::getGameLogic() const
 
 void ImageWidget::setGameLogic(GameLogic *value)
 {
-
     gameLogic = value;
     createHexagonField(gameLogic->m, gameLogic->n);
     gameLogic->changeColors();
@@ -64,7 +63,7 @@ void ImageWidget::drawText(QString text, int x, int y, int height, QColor color)
     painter.begin(image);
     painter.setPen(color);
     painter.setFont(QFont("Times", height, QFont::Bold));
-    painter.drawText(x-text.size()*height + 2, y-height, text.size()*2*height, height*2, Qt::AlignCenter | Qt::AlignHCenter, text);
+    painter.drawText(x-text.size()*height*0.8, y-height, text.size()*2*height, 2*height, Qt::AlignCenter | Qt::AlignHCenter, text);
 }
 
 void ImageWidget::fillCell(Cell* cell)
@@ -86,7 +85,7 @@ void ImageWidget::fillCell(Cell* cell)
             fillArea(cell->x0, cell->y0, cell->lastColor, recentlyDieColor);
             cell->lastColor = recentlyDieColor;
             break;
-        case Cell::DIE :
+        case Cell::DIE :        
             fillArea(cell->x0, cell->y0, cell->lastColor, backgroundColor);
             cell->lastColor = backgroundColor;
             break;
@@ -94,18 +93,13 @@ void ImageWidget::fillCell(Cell* cell)
             fillArea(cell->x0, cell->y0, defaultWidgetColor, backgroundColor);
             cell->lastColor = backgroundColor;
         }
+
     if (displayImpact){
-        //drawText(QString::number(cell->x), cell->x0 - gameLogic->k/2, cell->y0, gameLogic->k/3, borderColor);
-        //drawText(QString::number(cell->y), cell->x0 + gameLogic->k/2, cell->y0, gameLogic->k/3, borderColor);
-        drawText(QString::number(cell->getImpact()), cell->x0, cell->y0, gameLogic->k/1.5, borderColor);
+
+        drawText(QString::number(cell->getImpact()), cell->x0, cell->y0, gameLogic->k/2, borderColor);
     }
 }
 
-//        int globalX0 = static_cast<int>(x0 + bufX);
-//        int globalY0 = static_cast<int>(y0 + bufY);
-//        int globalX1 = static_cast<int>(x0 + x);
-//        int globalY1 = static_cast<int>(y0 + y);
-//        drawLine(globalX0, globalY0, globalX1, globalY1);
 
 
 void ImageWidget::setHexagonColored(int mx, int my)
@@ -227,7 +221,6 @@ void ImageWidget::drawField()
         drawHexagonLines(&cell);
         fillCell(&cell);
     }
-
 }
 
 void ImageWidget::createHexagonField(int m, int n)
@@ -374,8 +367,8 @@ ImageWidget::Span ImageWidget::getSpan(int x0, int y0, QColor lastColor)
 void ImageWidget::paintEvent(QPaintEvent*)
 {
     QPainter p(this);
-    if (gameLogic->paramsChanged){
 
+    if (gameLogic->paramsChanged){        
         int r = round(sqrt(3)/2*gameLogic->k);
         int R = gameLogic->k;
         int c = floor(gameLogic->newN/2);
@@ -387,9 +380,12 @@ void ImageWidget::paintEvent(QPaintEvent*)
         changeFieldSize();
         gameLogic->paramsChanged = false;
     }
+
     image = new QImage(width(), height(), QImage::Format_ARGB32);
-    //resize(static_cast<int>(gameLogic->m*round(sqrt(3)/2*gameLogic->k)), 2*gameLogic->n*gameLogic->k);
     bits = image->bits();
+
+    //resize(static_cast<int>(gameLogic->m*round(sqrt(3)/2*gameLogic->k)), 2*gameLogic->n*gameLogic->k);
+
 
     QTime t = QTime::currentTime();
 

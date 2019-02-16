@@ -33,24 +33,18 @@ void SettingsDialog::setGame(GameLogic *g)
 void SettingsDialog::on_buttonBox_accepted()
 {
     int buf = ui->kEditBox->text().toInt();
-    if (buf > 60){
-        buf = 60;
-    }
-    if (buf < 5){
-        buf = 5;
-    }
     if (game->k != buf){
         game->paramsChanged = true;
         game->k = buf;
     }
 
-    buf = ui->m_edit->text().toInt();
+    buf = ui->m_edit->text().toInt();    
     if (game->m != buf){
         game->paramsChanged = true;
         game->newM = buf;
     }
 
-    buf = ui->n_edit->text().toInt();
+    buf = ui->n_edit->text().toInt();    
     if (game->n != buf){
         game->paramsChanged = true;
         game->newN = buf;
@@ -71,5 +65,32 @@ void SettingsDialog::on_kSlider_valueChanged(int value)
 
 void SettingsDialog::on_kEditBox_textChanged(const QString &str)
 {
+
     ui->kSlider->setValue(str.toInt());
+
+    if (!isDigit(str) || str.toInt() > 60 || str.toInt() < 5){
+        ui->buttonBox->setDisabled(true);
+    } else {
+        ui->buttonBox->setDisabled(false);
+    }
+
+}
+
+void SettingsDialog::on_m_edit_textChanged(const QString &str)
+{
+    if (!isDigit(str) || str.toInt() > 80 || str.toInt() < 2){
+        ui->buttonBox->setDisabled(true);
+    } else {
+        ui->buttonBox->setDisabled(false);
+    }
+
+}
+
+void SettingsDialog::on_n_edit_textChanged(const QString &str)
+{
+    if (!isDigit(str) || str.toInt() > 80 || str.toInt() < 2){
+        ui->buttonBox->setDisabled(true);
+    } else {
+        ui->buttonBox->setDisabled(false);
+    }
 }

@@ -67,7 +67,7 @@ private:
 
     void setPixelColor(int x, int y, QColor color);
     QColor pixelColor(int x, int y);
-    //Cell &setHexagonColored(int mx, int my);
+
 signals:
 protected:
     void paintEvent(QPaintEvent* event);

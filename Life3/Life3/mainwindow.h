@@ -11,6 +11,7 @@
 #include <QFileDialog>
 #include "fileparser.h"
 #include "aboutdialog.h"
+#include "gameparamsdialog.h"
 
 namespace Ui {
 class MainWindow;

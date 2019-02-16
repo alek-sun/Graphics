@@ -38,7 +38,7 @@ SOURCES += \
     settingsdialog.cpp \
     fileparser.cpp \
     aboutdialog.cpp \
-    dialog.cpp
+    gameparamsdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,13 +52,14 @@ HEADERS += \
     settingsdialog.h \
     fileparser.h \
     aboutdialog.h \
-    dialog.h
+    gameparamsdialog.h
 
 FORMS += \
         mainwindow.ui \
     settingsdialog.ui \
     aboutdialog.ui \
-    dialog.ui
+    gameparamsdialog.ui \
+    gameparamsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

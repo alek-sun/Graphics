@@ -4,7 +4,12 @@
 #include <QDialog>
 #include <QWidget>
 #include <QShowEvent>
+#include <QIntValidator>
+#include <QMessageBox>
+#include <ctype.h>
 #include "gamelogic.h"
+
+using std::string;
 
 namespace Ui {
 class SettingsDialog;
@@ -30,6 +35,13 @@ public slots:
 private slots:
     void on_kSlider_valueChanged(int value);
     void on_kEditBox_textChanged(const QString &arg1);
+    bool isDigit(QString s){
+        bool sucs;
+        s.toDouble(&sucs);
+        return sucs;
+    }
+    void on_m_edit_textChanged(const QString &arg1);
+    void on_n_edit_textChanged(const QString &arg1);
 };
 
 #endif // SETTINGSDIALOG_H

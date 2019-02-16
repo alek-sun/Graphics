@@ -137,10 +137,16 @@
     <string>Step</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Step forward&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Step forward</string>
+   </property>
+   <property name="statusTip">
+    <string>Step forward</string>
    </property>
    <property name="shortcut">
     <string>Space</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
    </property>
    <property name="shortcutVisibleInContextMenu">
     <bool>true</bool>
@@ -155,10 +161,13 @@
      <normaloff>:/new/resourse/images/play.png</normaloff>:/new/resourse/images/play.png</iconset>
    </property>
    <property name="text">
-    <string>Run</string>
+    <string>Run/Pause</string>
    </property>
    <property name="toolTip">
-    <string>Run auto steps</string>
+    <string>Run/Pause auto steps</string>
+   </property>
+   <property name="statusTip">
+    <string>Run/Pause auto steps</string>
    </property>
    <property name="shortcut">
     <string>Return</string>
@@ -173,6 +182,9 @@
     <string>Clear</string>
    </property>
    <property name="toolTip">
+    <string>Clear all field</string>
+   </property>
+   <property name="statusTip">
     <string>Clear all field</string>
    </property>
    <property name="shortcut">
@@ -190,6 +202,9 @@
    <property name="toolTip">
     <string>Change field and cell size</string>
    </property>
+   <property name="statusTip">
+    <string>Change field and cell size</string>
+   </property>
   </action>
   <action name="actionShow_impact">
    <property name="checkable">
@@ -203,6 +218,9 @@
      <normaloff>:/new/resourse/images/show_impact1.png</normaloff>:/new/resourse/images/show_impact1.png</iconset>
    </property>
    <property name="text">
+    <string>Show impact</string>
+   </property>
+   <property name="statusTip">
     <string>Show impact</string>
    </property>
    <property name="shortcut">
@@ -226,6 +244,9 @@
    <property name="toolTip">
     <string>Change game mode Replace/XOR</string>
    </property>
+   <property name="statusTip">
+    <string>Change game mode Replace/XOR</string>
+   </property>
    <property name="shortcut">
     <string>M</string>
    </property>
@@ -241,6 +262,9 @@
    <property name="toolTip">
     <string>Load game field state to file</string>
    </property>
+   <property name="statusTip">
+    <string>Load game field state to file</string>
+   </property>
   </action>
   <action name="actionSave_to_file">
    <property name="icon">
@@ -251,6 +275,9 @@
     <string>Save game</string>
    </property>
    <property name="toolTip">
+    <string>Save game field state to file</string>
+   </property>
+   <property name="statusTip">
     <string>Save game field state to file</string>
    </property>
    <property name="shortcut">
@@ -268,6 +295,9 @@
    <property name="toolTip">
     <string>Change game parametrs</string>
    </property>
+   <property name="statusTip">
+    <string>Change game parametrs</string>
+   </property>
   </action>
   <action name="actionAuhtor">
    <property name="icon">
@@ -278,6 +308,9 @@
     <string>Auhtor</string>
    </property>
    <property name="toolTip">
+    <string>Information about author</string>
+   </property>
+   <property name="statusTip">
     <string>Information about author</string>
    </property>
   </action>

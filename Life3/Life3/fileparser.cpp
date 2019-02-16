@@ -16,7 +16,7 @@ vector<pair<int, int>> FileDriver::parseState()
     QStringList list;
     vector<pair<int, int>> coords;
 
-    qDebug() << file.open(QIODevice::ReadOnly);
+    file.open(QIODevice::ReadOnly);
 
     if (!file.exists()){
         return coords;
@@ -35,9 +35,7 @@ vector<pair<int, int>> FileDriver::parseState()
         switch (i){
         case 0 :
         {
-            //QString::KeepEmptyParts
             QStringList listdigits = digits.split(" ");
-            qDebug() << listdigits;
             game->m = listdigits[0].toInt();
             game->n = listdigits[1].toInt();
             break;
@@ -77,11 +75,35 @@ vector<pair<int, int>> FileDriver::parseState()
 bool FileDriver::saveState()
 {
     QFile file (filePath.toLocalFile());
+
     if(!file.open(QFile::WriteOnly | QFile::Text))
         return false;
-    //char* m = itoa(game->m);
-    string str = to_string(game->m).append(" ").append("\r\n");
-    //file.write()
+
+    string str = to_string(game->m).append(" ").append(to_string(game->n)).append("\r\n")
+            .append("1").append("\r\n");
+    file.write(str.c_str(), str.length());
+
+    str = to_string(game->k).append("\r\n");
+    file.write(str.c_str());
+
+    vector<pair<int, int>> alive;
+    for (auto cell : game->curState){
+        if (cell.getIsAlive()){
+            pair<int, int> p;
+            p.first = cell.x;
+            p.second = cell.y;
+            alive.push_back(p);
+        }
+    }
+
+    str = to_string(alive.size()).append("\r\n");
+    file.write(str.c_str());
+
+    for (auto cell : alive){
+        str = to_string(cell.first).append(" ").append(to_string(cell.second)).append("\r\n");
+        file.write(str.c_str());
+    }
+
     file.flush();
     file.close();
 }

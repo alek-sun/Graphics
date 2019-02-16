@@ -135,7 +135,9 @@ void MainWindow::on_actionOpen_file_triggered()
 
 void MainWindow::on_actionGame_parametrs_triggered()
 {
-
+    GameParamsDialog gameParamsDialog;
+    gameParamsDialog.setGame(gameLogic);
+    gameParamsDialog.exec();
 }
 
 void MainWindow::on_actionAuhtor_triggered()
