@@ -28,6 +28,7 @@ void GameLogic::step()
 {
     int x, y;
     vector<Cell> newState;
+    //changeColors();
     for (int i = 0; i < curState.size(); ++i){
         Cell c (curState[i]);
 
@@ -82,7 +83,6 @@ double GameLogic::findCellImpact(int x, int y)
     if (x >= 0 && y >= 0 && x <= n-1 && y <= (m - 1 - x % 2)){
         int c = floor(x/2);
         int x1 = (c + x % 2) * m + c * (m - 1);
-        //cout << "x1 = " << x1 << "y = " << y << endl;
         return curState[x1+y].getIsAlive();
     }
     return 0.0;

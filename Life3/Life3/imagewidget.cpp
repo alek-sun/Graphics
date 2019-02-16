@@ -376,16 +376,12 @@ void ImageWidget::paintEvent(QPaintEvent*)
         int w = 2+2*(gameLogic->newM)*r;
         setMinimumSize(w, h);
         setMaximumSize(w, h);
-        //resize(ceil(2+2*(gameLogic->m)*r), ceil(1.65*(gameLogic->n)*R));
         changeFieldSize();
         gameLogic->paramsChanged = false;
     }
 
     image = new QImage(width(), height(), QImage::Format_ARGB32);
     bits = image->bits();
-
-    //resize(static_cast<int>(gameLogic->m*round(sqrt(3)/2*gameLogic->k)), 2*gameLogic->n*gameLogic->k);
-
 
     QTime t = QTime::currentTime();
 

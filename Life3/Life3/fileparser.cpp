@@ -90,6 +90,7 @@ bool FileDriver::saveState()
     for (auto cell : game->curState){
         if (cell.getIsAlive()){
             pair<int, int> p;
+            qDebug() << cell.x << " " << cell.y;
             p.first = cell.x;
             p.second = cell.y;
             alive.push_back(p);
