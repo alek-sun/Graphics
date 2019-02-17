@@ -68,7 +68,7 @@ void SettingsDialog::on_kEditBox_textChanged(const QString &str)
 
     ui->kSlider->setValue(str.toInt());
 
-    if (!isDigit(str) || str.toInt() > 60 || str.toInt() < 5){
+    if (!isDigit(str) || str.toInt() > 50 || str.toInt() < 5){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -78,7 +78,7 @@ void SettingsDialog::on_kEditBox_textChanged(const QString &str)
 
 void SettingsDialog::on_m_edit_textChanged(const QString &str)
 {
-    if (!isDigit(str) || str.toInt() > 80 || str.toInt() < 2){
+    if (!isDigit(str) || str.toInt() > 100 || str.toInt() < 2){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -88,7 +88,7 @@ void SettingsDialog::on_m_edit_textChanged(const QString &str)
 
 void SettingsDialog::on_n_edit_textChanged(const QString &str)
 {
-    if (!isDigit(str) || str.toInt() > 80 || str.toInt() < 2){
+    if (!isDigit(str) || str.toInt() > 100 || str.toInt() < 2){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);

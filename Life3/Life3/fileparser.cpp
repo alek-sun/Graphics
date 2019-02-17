@@ -89,8 +89,7 @@ bool FileDriver::saveState()
     vector<pair<int, int>> alive;
     for (auto cell : game->curState){
         if (cell.getIsAlive()){
-            pair<int, int> p;
-            qDebug() << cell.x << " " << cell.y;
+            pair<int, int> p;           
             p.first = cell.x;
             p.second = cell.y;
             alive.push_back(p);

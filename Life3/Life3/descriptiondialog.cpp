@@ -5,8 +5,7 @@ DescriptionDialog::DescriptionDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DescriptionDialog)
 {
-    ui->setupUi(this);
-    setStyleSheet("background-color: rgba(245, 245, 245, 245);");
+    ui->setupUi(this);    
 }
 
 DescriptionDialog::~DescriptionDialog()

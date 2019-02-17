@@ -45,36 +45,27 @@ void GameLogic::step()
 }
 
 void GameLogic::clear()
-{
-    vector<Cell> newState;
-    for (auto cell : curState){
+{    
+    for (auto &cell : curState){
         cell.setIsAlive(false);
         cell.setImpact(0.0);
-        cell.setState(Cell::DIE);
-        newState.push_back(cell);
-    }
-    curState = newState;
+        cell.setState(Cell::DIE);       
+    }    
 }
 
 void GameLogic::changeColors()
-{
-    vector<Cell> newState;
-    for (auto cell : curState){
+{    
+    for (auto &cell : curState){
         cell.setState(liveBegin, liveEnd, birthBegin, birthEnd);
         renewImpact(&cell);     // uses curState
-        newState.push_back(cell);
-    }
-    curState = newState;
+    }   
 }
 
 void GameLogic::calculateImpacts()
-{
-    vector<Cell> newState;
-    for (auto cell : curState){
+{    
+    for (auto &cell : curState){
         renewImpact(&cell);     // uses curState
-        newState.push_back(cell);
     }
-    curState = newState;
 }
 
 double GameLogic::findCellImpact(int x, int y)

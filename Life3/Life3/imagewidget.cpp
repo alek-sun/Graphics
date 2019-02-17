@@ -111,8 +111,6 @@ void ImageWidget::setHexagonColored(int mx, int my)
         double cx = mx - gameLogic->curState[j].x0;
         double cy = my - gameLogic->curState[j].y0;
 
-        //check gameLogic->curState
-
         for (i = 0; i < 6; ++i){
             if (i != 5){
                 next_index = i+1;
@@ -225,7 +223,7 @@ void ImageWidget::drawField()
 void ImageWidget::createHexagonField(int m, int n)
 {
     gameLogic->curState.clear();
-    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y///////
+    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y
     int r = curY;
     int stepY = 2*r;
     int startY = curY;
@@ -253,7 +251,7 @@ void ImageWidget::changeFieldSize()
     int n = gameLogic->n;
     int mm = gameLogic->newM;
     int nn = gameLogic->newN;
-    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y///////
+    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y
     int r = curY;
     int stepY = 2*r;
     int startY = curY;
@@ -279,7 +277,7 @@ void ImageWidget::changeFieldSize()
             }
             curY += stepY;
         }
-        //cout << "=========================================" << endl;
+
         curX += 1.5 * gameLogic->k;
     }
     gameLogic->curState = newState;
@@ -380,31 +378,13 @@ void ImageWidget::paintEvent(QPaintEvent*)
     image = new QImage(width(), height(), QImage::Format_ARGB32);
     bits = image->bits();
 
-    QTime t = QTime::currentTime();
+    //QTime t = QTime::currentTime();
 
     drawField();
 
-    qDebug() << -QTime::currentTime().msecsTo(t);
+    //qDebug() << -QTime::currentTime().msecsTo(t);
 
     p.drawImage(0, 0, *image);
-
-    //dx > dy
-    /*  drawLine(200, 100, 300, 70, borderColor); //up right
-        drawLine(200, 100, 100, 70, borderColor); //up leftt
-        drawLine(200, 100, 300, 130, borderColor); //down right
-        drawLine(200, 100, 100, 130, borderColor); //down left
-        //dx < dy
-        drawLine(200, 100, 220, 30, borderColor); //up right
-        drawLine(200, 100, 180, 30, borderColor); //up leftt
-        drawLine(200, 100, 220, 170, borderColor); //down right
-        drawLine(200, 100, 180, 170, borderColor); //down left
-        // dx = 0 || dy = 0
-        drawLine(200, 100, 200, 50, borderColor); //up
-        drawLine(200, 100, 200, 150, borderColor); //down
-        drawLine(200, 100, 250, 100, borderColor); //right
-        drawLine(200, 100, 150, 100, borderColor); //down
-        fillArea(10, 10, backgroundColor, cellColor);
-*/
 }
 
 void ImageWidget::mousePressEvent(QMouseEvent *event)
