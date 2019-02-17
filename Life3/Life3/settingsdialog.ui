@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Size settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resourses.qrc">
+    <normaloff>:/new/resourse/images/size.png</normaloff>:/new/resourse/images/size.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -239,7 +243,9 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

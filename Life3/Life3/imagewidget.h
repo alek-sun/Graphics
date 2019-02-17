@@ -29,7 +29,7 @@ public:
     void drawText(QString text, int x, int y, int height, QColor color);
     void createHexagonField(int m, int n);
 
-    bool displayImpact;
+    bool displayImpact = false;
 
     void fillCell(Cell *cell);
     void setHexagonColored(int mx, int my);

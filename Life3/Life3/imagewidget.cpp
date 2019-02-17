@@ -62,8 +62,8 @@ void ImageWidget::drawText(QString text, int x, int y, int height, QColor color)
     QPainter painter;
     painter.begin(image);
     painter.setPen(color);
-    painter.setFont(QFont("Times", height, QFont::Bold));
-    painter.drawText(x-text.size()*height*0.8, y-height, text.size()*2*height, 2*height, Qt::AlignCenter | Qt::AlignHCenter, text);
+    painter.setFont(QFont("Helvetica", height, QFont::Bold));
+    painter.drawText(x-text.size()*height+2, y-height, text.size()*2*height, 2*height, Qt::AlignCenter | Qt::AlignHCenter, text);
 }
 
 void ImageWidget::fillCell(Cell* cell)
@@ -95,7 +95,6 @@ void ImageWidget::fillCell(Cell* cell)
         }
 
     if (displayImpact){
-
         drawText(QString::number(cell->getImpact()), cell->x0, cell->y0, gameLogic->k/2, borderColor);
     }
 }
@@ -226,7 +225,7 @@ void ImageWidget::drawField()
 void ImageWidget::createHexagonField(int m, int n)
 {
     gameLogic->curState.clear();
-    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y
+    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y///////
     int r = curY;
     int stepY = 2*r;
     int startY = curY;
@@ -237,14 +236,12 @@ void ImageWidget::createHexagonField(int m, int n)
         curY = startY + r * (i % 2);
         lim = m - i % 2;
         for (j = 0; j < lim; ++j){
-            Cell hexagon(curY, curX, i, j); //coords
-            //qDebug() << i << " ; " << j;
+            Cell hexagon(curY, curX, i, j); //coords          
             createHexagonVertices(&hexagon);
             gameLogic->curState.push_back(hexagon);
             curY += stepY;
         }
         curX += 1.5 * gameLogic->k;
-        //qDebug() << "===========================";
     }
 }
 
@@ -256,7 +253,7 @@ void ImageWidget::changeFieldSize()
     int n = gameLogic->n;
     int mm = gameLogic->newM;
     int nn = gameLogic->newN;
-    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y
+    int curY = static_cast<int>(round(sqrt(3)/2*gameLogic->k)); // game X,Y///////
     int r = curY;
     int stepY = 2*r;
     int startY = curY;

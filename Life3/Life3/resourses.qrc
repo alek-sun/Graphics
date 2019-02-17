@@ -12,6 +12,8 @@
         <file>images/question.png</file>
         <file>images/save.png</file>
         <file>images/size.png</file>
+        <file>images/game_icon.png</file>
+        <file>images/about_game.png</file>
     </qresource>
     <qresource prefix="/">
         <file>images/settings.png</file>

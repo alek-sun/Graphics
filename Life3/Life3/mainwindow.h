@@ -12,6 +12,7 @@
 #include "fileparser.h"
 #include "aboutdialog.h"
 #include "gameparamsdialog.h"
+#include "descriptiondialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,6 +48,7 @@ private slots:
     void on_actionOpen_file_triggered();
     void on_actionGame_parametrs_triggered();
     void on_actionAuhtor_triggered();
+    void on_actionAbout_game_triggered();
 };
 
 #endif // MAINWINDOW_H

@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Life</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resourses.qrc">
+    <normaloff>:/new/resourse/images/game_icon.png</normaloff>:/new/resourse/images/game_icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QScrollArea" name="scrollArea">
@@ -100,6 +104,7 @@
      <string>About</string>
     </property>
     <addaction name="actionAuhtor"/>
+    <addaction name="actionAbout_game"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu"/>
@@ -125,6 +130,7 @@
    <addaction name="actionGame_settings"/>
    <addaction name="actionGame_parametrs"/>
    <addaction name="separator"/>
+   <addaction name="actionAbout_game"/>
    <addaction name="actionAuhtor"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -211,7 +217,7 @@
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="resourses.qrc">
@@ -312,6 +318,15 @@
    </property>
    <property name="statusTip">
     <string>Information about author</string>
+   </property>
+  </action>
+  <action name="actionAbout_game">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/about_game.png</normaloff>:/new/resourse/images/about_game.png</iconset>
+   </property>
+   <property name="text">
+    <string>About game</string>
    </property>
   </action>
  </widget>

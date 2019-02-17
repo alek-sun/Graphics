@@ -49,7 +49,7 @@ void GameParamsDialog::on_imp1_edit_textChanged(const QString &str)
 {
     ui->imp1_slider->setValue(round(str.toDouble()));
 
-    if (!isDigit(str) || str.toDouble() > 10.0 || str.toDouble() < 0.0){
+    if (!isDigit(str) || str.toDouble() > 50.0 || str.toDouble() < 0.0){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -60,7 +60,7 @@ void GameParamsDialog::on_imp2_edit_textChanged(const QString &str)
 {
     ui->imp2_slider->setValue(str.toDouble());
 
-    if (!isDigit(str) || str.toDouble() > 10.0 || str.toDouble() < 0.0){
+    if (!isDigit(str) || str.toDouble() > 50.0 || str.toDouble() < 0.0){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -79,7 +79,7 @@ void GameParamsDialog::on_lend_edit_textChanged(const QString &str)
     double lbegin = ui->lbegon_edit->text().toDouble();
 
     double d = str.toDouble();
-     if (d > 10.0 || d < 0.0 || d < bend || d < bbegin || d < lbegin){
+     if (d > 50.0 || d < 0.0 || d < bend || d < bbegin || d < lbegin){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -98,7 +98,7 @@ void GameParamsDialog::on_bend_edit_textChanged(const QString &str)
     double lbegin = ui->lbegon_edit->text().toDouble();
 
     double d = str.toDouble();
-     if (d > 10.0 || d < 0.0 || d > lend || d < bbegin || d < lbegin){
+     if (d > 50.0 || d < 0.0 || d > lend || d < bbegin || d < lbegin){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -117,7 +117,7 @@ void GameParamsDialog::on_bbegin_edit_textChanged(const QString &str)
     double lbegin = ui->lbegon_edit->text().toDouble();
 
     double d = str.toDouble();
-     if (d > 10.0 || d < 0.0 || d > lend || d > bend || d < lbegin){
+     if (d > 50.0 || d < 0.0 || d > lend || d > bend || d < lbegin){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);
@@ -136,7 +136,7 @@ void GameParamsDialog::on_lbegon_edit_textChanged(const QString &str)
     double bbegin = ui->bbegin_edit->text().toDouble();
 
     double d = str.toDouble();
-     if (d > 10.0 || d < 0.0 || d > lend || d > bend || d > bbegin){
+     if (d > 50.0 || d < 0.0 || d > lend || d > bend || d > bbegin){
         ui->buttonBox->setDisabled(true);
     } else {
         ui->buttonBox->setDisabled(false);

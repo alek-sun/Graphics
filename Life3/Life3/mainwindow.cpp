@@ -10,14 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    int m = 20, n = 20;
+    int m = 30, n = 30;
     gameLogic = new GameLogic(m, n);
     ui->scrollAreaWidgetContents->setGameLogic(gameLogic);
     renewSize(m, n);
     timer = new QTimer();
-    timer->setInterval(800);
+    timer->setInterval(1000);
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_actionStep_triggered()));
-
 }
 
 
@@ -144,4 +143,10 @@ void MainWindow::on_actionAuhtor_triggered()
 {
     AboutDialog about;
     about.exec();
+}
+
+void MainWindow::on_actionAbout_game_triggered()
+{
+    DescriptionDialog d;
+    d.exec();
 }

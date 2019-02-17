@@ -10,15 +10,15 @@ GameLogic::GameLogic(int m, int n)
     this->n = n;
     this->newM = m;
     this->newN = n;
-    this -> k = 20;
+    this -> k = 10;
     //this->liveBegin = 2.0;
     //this->liveEnd = 3.3;
-    this->liveBegin = 1.0;
-    this->liveEnd = 4.3;
-    //this->birthBegin = 2.3;
-    this->birthBegin = 1.7;
+    this->liveBegin = 2.0;
+    this->liveEnd = 4.0;
+    this->birthBegin = 2.3;
+    //this->birthBegin = 1.7;
     //this->birthEnd = 2.9;
-    this->birthEnd = 3.4;
+    this->birthEnd = 3.0;
     this -> firstImpact = 1.0;
     this->secondImpact = 3.0;
     this->mode = REPLACE_MODE;
@@ -28,7 +28,6 @@ void GameLogic::step()
 {
     int x, y;
     vector<Cell> newState;
-    //changeColors();
     for (int i = 0; i < curState.size(); ++i){
         Cell c (curState[i]);
 
@@ -61,8 +60,8 @@ void GameLogic::changeColors()
 {
     vector<Cell> newState;
     for (auto cell : curState){
-        renewImpact(&cell);     // uses curState
         cell.setState(liveBegin, liveEnd, birthBegin, birthEnd);
+        renewImpact(&cell);     // uses curState
         newState.push_back(cell);
     }
     curState = newState;

@@ -22,7 +22,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>About author</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resourses.qrc">
+    <normaloff>:/new/resourse/images/question.png</normaloff>:/new/resourse/images/question.png</iconset>
   </property>
   <widget class="QLabel" name="pic_label">
    <property name="geometry">
@@ -127,6 +131,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
  <connections/>
 </ui>
