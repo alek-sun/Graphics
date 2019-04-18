@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    int m = 30, n = 30;
+    int m = 10, n = 10;
     gameLogic = new GameLogic(m, n);
     ui->scrollAreaWidgetContents->setGameLogic(gameLogic);
     renewSize(m, n);
@@ -43,6 +43,11 @@ void MainWindow::resizeEvent(QResizeEvent *)
 {
     ui->scrollArea->setMaximumSize(ui->centralWidget->size());
     ui->scrollArea->setMinimumSize(ui->centralWidget->size());
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    on_actionSave_to_file_triggered();
 }
 
 void MainWindow::on_actionStep_triggered()
@@ -99,8 +104,7 @@ void MainWindow::on_actionSave_to_file_triggered()
 {
     QUrl fileUrl =
             QFileDialog::getSaveFileUrl(this,
-                                        "Open saved model");
-                                        //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
+                                        "Open saved model" ,QUrl( "FIT_16209_ Fediaeva_Life_Data"));
 
     FileDriver fsaver(gameLogic, fileUrl);
     fsaver.saveState();
@@ -110,8 +114,8 @@ void MainWindow::on_actionOpen_file_triggered()
 {
     QUrl fileUrl =
             QFileDialog::getOpenFileUrl(this,
-                                        "Open saved model");
-                                        //"C:\\1prog\\3course\\graphics\\graphics_fix\\Life3\\Life3\\FIT_16209_ Fediaeva_Life_Data");
+                                        "Open saved model",
+                                        QUrl("FIT_16209_ Fediaeva_Life_Data"));
 
     if (fileUrl == QUrl(""))
         return;

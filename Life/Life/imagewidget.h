@@ -63,7 +63,8 @@ private:
     void createHexagonVertices(Cell *h);
     void pushSurround(int leftX, int yLevel, stack<Span>, QColor last, QColor newColor);
     void drawHexagonLines(Cell* hexagon);
-    void fillArea(int x0, int y0, QColor lastColor, QColor c);
+    void fillArea(int x0, int y0, QColor lastColor, QColor c, int isOct);
+    void drawSpan(Span s, QColor c);
 
     void setPixelColor(int x, int y, QColor color);
     QColor pixelColor(int x, int y);

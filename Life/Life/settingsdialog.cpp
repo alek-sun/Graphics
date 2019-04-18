@@ -7,7 +7,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
-    ui->kSlider->setMaximum(60);
+    ui->kSlider->setMaximum(50);
     ui->kSlider->setMinimum(5);
 }
 

@@ -35,6 +35,7 @@ private:
 signals:
 protected:
     void resizeEvent(QResizeEvent *);
+    void closeEvent(QCloseEvent *event);
 private slots:
     void on_actionStep_triggered();
     void on_actionClear_triggered();

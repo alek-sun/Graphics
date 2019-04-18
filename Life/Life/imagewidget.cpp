@@ -70,27 +70,27 @@ void ImageWidget::fillCell(Cell* cell)
 {
     switch (cell->getState()){
         case Cell::RECENTLY_BIRTH :
-            fillArea(cell->x0, cell->y0, cell->lastColor, recentlyBirthColor);
+            fillArea(cell->x0, cell->y0, cell->lastColor, recentlyBirthColor, 0);
             cell->lastColor = recentlyBirthColor;
             break;
         case Cell::LONG_BIRTH :
-            fillArea(cell->x0, cell->y0, cell->lastColor, longBirthColor);
+            fillArea(cell->x0, cell->y0, cell->lastColor, longBirthColor, 0);
             cell->lastColor = longBirthColor;
             break;
         case Cell::LONG_DIE :
-            fillArea(cell->x0, cell->y0, cell->lastColor, longDieColor);
+            fillArea(cell->x0, cell->y0, cell->lastColor, longDieColor, 0);
             cell->lastColor = longDieColor;
             break;
         case Cell::RECENTLY_DIE :
-            fillArea(cell->x0, cell->y0, cell->lastColor, recentlyDieColor);
+            fillArea(cell->x0, cell->y0, cell->lastColor, recentlyDieColor, 0);
             cell->lastColor = recentlyDieColor;
             break;
         case Cell::DIE :        
-            fillArea(cell->x0, cell->y0, cell->lastColor, backgroundColor);
+            fillArea(cell->x0, cell->y0, cell->lastColor, backgroundColor, 0);
             cell->lastColor = backgroundColor;
             break;
         default:
-            fillArea(cell->x0, cell->y0, defaultWidgetColor, backgroundColor);
+            fillArea(cell->x0, cell->y0, defaultWidgetColor, backgroundColor, 0);
             cell->lastColor = backgroundColor;
         }
 
@@ -167,6 +167,19 @@ void ImageWidget::setPixelColor(int x, int y, QColor color)
     bits[i + 1] = color.green();
     bits[i + 2] = color.red();
     bits[i + 3] = color.alpha();
+
+    /*uchar *ptr = bits;
+    int i;
+    int w = width() * 4;
+    for (i = 0; i < w; ++i){
+        ptr += y;
+    }
+    x*=4;
+    ptr += x;
+    *(ptr + 2) = color.red();
+    *(ptr + 1) = color.green();
+    *ptr = color.blue();
+    *(ptr + 3) = color.alpha();*/
 }
 
 QColor ImageWidget::pixelColor(int x, int y)
@@ -174,33 +187,52 @@ QColor ImageWidget::pixelColor(int x, int y)
     int i = x + y*width();
     i *= 4;
     return QColor(bits[i + 2], bits[i + 1], bits[i], bits[i + 3]);
+    /*uchar *ptr = bits;
+    int i;
+    int w = width() * 4;
+    for (i = 0; i < w; ++i){
+        ptr += y;
+    }
+    x*=4;
+    ptr += x;
+    return QColor(*(ptr+2), *(ptr + 1), *ptr, *(ptr + 3));*/
 }
 
-void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
+
+//isOct = 0 : 4-connected area
+//isOct = 1 : 8-connected area
+void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor, int isOct)
 {
-    if (newColor == lastColor){
+    if (newColor == lastColor || (isOct != 0 && isOct != 1)){
         return;
     }
+
+    if (pixelColor(x0, y0) != lastColor) return;
+
     int seedY, i;
     stack<Span> stack;
     Span curSpan, sp;
+
     Span firstSpan = getSpan(x0, y0, lastColor);
     stack.push(firstSpan);
+
     while (!stack.empty()){
         curSpan = stack.top();
+
         stack.pop();
         seedY = curSpan.y;
-        drawLine(curSpan.left, seedY, curSpan.right, seedY, newColor);
+        drawSpan(curSpan, newColor);
 
-        for (i = curSpan.left; i <= curSpan.right; ++i){
-
+        for (i = curSpan.left - isOct; i <= curSpan.right + isOct; ++i){
+            if (i < 0) continue;
             if (pixelColor(i, seedY+1) == lastColor){
                 sp = getSpan(i, seedY+1, lastColor);                
                 stack.push(sp);
                 i = sp.right;
             }
         }
-        for (i = curSpan.left; i <= curSpan.right; ++i){
+        for (i = curSpan.left - isOct; i <= curSpan.right + isOct; ++i){
+            if (i < 0) continue;
             if (seedY > 0){
                 if (pixelColor(i, seedY-1) == lastColor){
                     sp = getSpan(i, seedY-1, lastColor);
@@ -209,6 +241,21 @@ void ImageWidget::fillArea(int x0, int y0, QColor lastColor, QColor newColor)
                 }
             }
         }
+    }
+}
+
+void ImageWidget::drawSpan(ImageWidget::Span s, QColor color)
+{
+    int shiftY = s.y*width();
+    int i = 4*(s.left + shiftY);
+    int lim = 4*(s.right + shiftY);
+    uchar* ptr;
+    for (; i <= lim; i += 4){
+        ptr = &bits[i];
+        *(ptr + 2) = color.red();
+        *(ptr + 1) = color.green();
+        *ptr = color.blue();
+        *(ptr + 3) = color.alpha();
     }
 }
 
@@ -234,7 +281,7 @@ void ImageWidget::createHexagonField(int m, int n)
         curY = startY + r * (i % 2);
         lim = m - i % 2;
         for (j = 0; j < lim; ++j){
-            Cell hexagon(curY, curX, i, j); //coords          
+            Cell hexagon(curY, curX, i, j); //coords
             createHexagonVertices(&hexagon);
             gameLogic->curState.push_back(hexagon);
             curY += stepY;
@@ -341,6 +388,7 @@ void ImageWidget::drawLine(int x0, int y0, int x1, int y1, QColor color)
 
 ImageWidget::Span ImageWidget::getSpan(int x0, int y0, QColor lastColor)
 {
+
     int x = x0;
     int y = y0;
     Span span;
@@ -363,7 +411,7 @@ void ImageWidget::paintEvent(QPaintEvent*)
 {
     QPainter p(this);
 
-    if (gameLogic->paramsChanged){        
+    if (gameLogic->paramsChanged){
         int r = round(sqrt(3)/2*gameLogic->k);
         int R = gameLogic->k;
         int c = floor(gameLogic->newN/2);
@@ -375,12 +423,15 @@ void ImageWidget::paintEvent(QPaintEvent*)
         gameLogic->paramsChanged = false;
     }
 
+    delete image;
     image = new QImage(width(), height(), QImage::Format_ARGB32);
     bits = image->bits();
 
     //QTime t = QTime::currentTime();
 
     drawField();
+
+    //drawLine(100, 100, 120, 120, QColor(130, 120, 40, 200));
 
     //qDebug() << -QTime::currentTime().msecsTo(t);
 
