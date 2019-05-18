@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-02-25T15:20:27
+# Project created by QtCreator 2019-02-26T18:52:23
 #
 #-------------------------------------------------
 
@@ -26,13 +26,61 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    awidget.cpp \
+    bwidget.cpp \
+    cwidget.cpp \
+    filedriver.cpp \
+    imageresizer.cpp \
+    rotationdialog.cpp \
+    imatrixfilter.cpp \
+    blurfilter.cpp \
+    effect.cpp \
+    bweffect.cpp \
+    negativeeffect.cpp \
+    orderdithereffect.cpp \
+    errordiffeffect.cpp \
+    aboutdialog.cpp \
+    robertseffect.cpp \
+    sobel.cpp \
+    duplicateaction.cpp \
+    rotateaction.cpp \
+    gammaeffect.cpp \
+    sharpfilter.cpp \
+    stampfilter.cpp \
+    watercolorfilter.cpp \
+    expansionfilter.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    bwidget.h \
+    cwidget.h \
+    awidget.h \
+    filedriver.h \
+    imageresizer.h \
+    rotationdialog.h \
+    imatrixfilter.h \
+    blurfilter.h \
+    effect.h \
+    bweffect.h \
+    negativeeffect.h \
+    orderdithereffect.h \
+    errordiffeffect.h \
+    aboutdialog.h \
+    robertseffect.h \
+    sobel.h \
+    duplicateaction.h \
+    rotateaction.h \
+    gammaeffect.h \
+    sharpfilter.h \
+    stampfilter.h \
+    watercolorfilter.h \
+    expansionfilter.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    rotationdialog.ui \
+    aboutdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -40,8 +88,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    images/images.qrc
-
-DISTFILES += \
-    images/open.png \
-    images/save.png
+    images/rrr.qrc
