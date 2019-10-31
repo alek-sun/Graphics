@@ -9,10 +9,8 @@ FCalculator::FCalculator(Settings* s)
 
 double FCalculator::f(double x, double y)
 {    
-    //return 1 / (1 + pow(x - 2.5, 4)) + 1 / (1 + pow(y - 2.5, 4)) + sin(x * y) * 0.3;
-    return pow(x-5, 2) + pow(y-5, 2);
+    return 1 / (1 + pow(x - 2.5, 4)) + 1 / (1 + pow(y - 2.5, 4)) + sin(x * y) * 0.3;
     //return 100 / (1 + pow(x - 2.5, 4)) + 100 / (1 + pow(y - 2.5, 4)) + 1000*cos(x * y) * 0.3;
-    //return sin(x/20)+cos(y/20);
 }
 
 void FCalculator::buildGrid()

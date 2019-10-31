@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1096</width>
+    <height>455</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Filters</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images/rrr.qrc">
+    <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/Filter-PNG-Image.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/Filter-PNG-Image.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="minimumSize">
+    <size>
+     <width>1090</width>
+     <height>380</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1090</width>
+     <height>380</height>
+    </size>
+   </property>
+   <widget class="AWidget" name="a_widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>350</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="BWidget" name="b_widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>350</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="CWidget" name="c_widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>10</y>
+      <width>350</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>350</width>
+      <height>350</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1096</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+   </widget>
+   <widget class="QMenu" name="menuActions">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionClear"/>
+    <addaction name="actionSelect_square"/>
+    <addaction name="actionR2Bmp"/>
+    <addaction name="actionDuplication"/>
+   </widget>
+   <widget class="QMenu" name="menuFilters">
+    <property name="title">
+     <string>Filters</string>
+    </property>
+    <addaction name="actionBW"/>
+    <addaction name="actionNegative"/>
+    <addaction name="actionBlur"/>
+    <addaction name="actionSharpness"/>
+    <addaction name="actionOrdered_dither"/>
+    <addaction name="actionError_diffusion_dither"/>
+    <addaction name="actionRoberts"/>
+    <addaction name="actionSobel"/>
+    <addaction name="actionStamping"/>
+    <addaction name="actionWatercoloring"/>
+    <addaction name="actionGamma_correction"/>
+    <addaction name="actionErozy"/>
+    <addaction name="actionConstriction"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAuthor"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuActions"/>
+   <addaction name="menuFilters"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="separator"/>
+   <addaction name="actionBW"/>
+   <addaction name="actionNegative"/>
+   <addaction name="actionGamma_correction"/>
+   <addaction name="actionOrdered_dither"/>
+   <addaction name="actionError_diffusion_dither"/>
+   <addaction name="actionBlur"/>
+   <addaction name="actionSharpness"/>
+   <addaction name="actionRoberts"/>
+   <addaction name="actionSobel"/>
+   <addaction name="actionStamping"/>
+   <addaction name="actionErozy"/>
+   <addaction name="actionConstriction"/>
+   <addaction name="actionWatercoloring"/>
+   <addaction name="separator"/>
+   <addaction name="actionDuplication"/>
+   <addaction name="actionSelect_square"/>
+   <addaction name="actionClear"/>
+   <addaction name="actionR2Bmp"/>
+   <addaction name="separator"/>
+   <addaction name="actionSettings"/>
+   <addaction name="separator"/>
+   <addaction name="actionAuthor"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/open.png</normaloff>:/rrr/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open picture</string>
+   </property>
+   <property name="statusTip">
+    <string>Open picture</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/save.png</normaloff>:/rrr/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save changed picture</string>
+   </property>
+   <property name="statusTip">
+    <string>Save changed picture</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionBW">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/bw.png</normaloff>:/rrr/bw.png</iconset>
+   </property>
+   <property name="text">
+    <string>BW</string>
+   </property>
+   <property name="toolTip">
+    <string>Black &amp; White filter</string>
+   </property>
+   <property name="statusTip">
+    <string>Black &amp; White filter</string>
+   </property>
+  </action>
+  <action name="actionNegative">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/negative.png</normaloff>:/rrr/negative.png</iconset>
+   </property>
+   <property name="text">
+    <string>Negative</string>
+   </property>
+   <property name="toolTip">
+    <string>Negative filter</string>
+   </property>
+   <property name="statusTip">
+    <string>Negative filter</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/cl.png</normaloff>:/rrr/cl.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear selected</string>
+   </property>
+   <property name="statusTip">
+    <string>Clear selected</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionSelect_square">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/sel.png</normaloff>:/rrr/sel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select square</string>
+   </property>
+   <property name="statusTip">
+    <string>Select square</string>
+   </property>
+  </action>
+  <action name="actionOrdered_dither">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/ord_dither.png</normaloff>:/rrr/ord_dither.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ordered dither</string>
+   </property>
+   <property name="statusTip">
+    <string>Ordered dither</string>
+   </property>
+  </action>
+  <action name="actionR2Bmp">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/R2Bmp.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/R2Bmp.png</iconset>
+   </property>
+   <property name="text">
+    <string>R2Bmp</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy image from zone C to zone B</string>
+   </property>
+   <property name="statusTip">
+    <string>Copy image from zone C to zone B</string>
+   </property>
+  </action>
+  <action name="actionBlur">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/blur.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/blur.png</iconset>
+   </property>
+   <property name="text">
+    <string>Blur</string>
+   </property>
+   <property name="toolTip">
+    <string>Blur filter</string>
+   </property>
+   <property name="statusTip">
+    <string>Blur filter</string>
+   </property>
+  </action>
+  <action name="actionSharpness">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/shapness.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/shapness.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sharpness</string>
+   </property>
+   <property name="toolTip">
+    <string>Sharpness filter</string>
+   </property>
+   <property name="statusTip">
+    <string>Sharpness filter</string>
+   </property>
+  </action>
+  <action name="actionRoberts">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/roberts.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/roberts.png</iconset>
+   </property>
+   <property name="text">
+    <string>Roberts</string>
+   </property>
+   <property name="toolTip">
+    <string>Roberts thresold</string>
+   </property>
+   <property name="statusTip">
+    <string>Roberts thresold</string>
+   </property>
+  </action>
+  <action name="actionSobel">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/sobel.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/sobel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sobel</string>
+   </property>
+   <property name="toolTip">
+    <string>Sobel thresold</string>
+   </property>
+   <property name="statusTip">
+    <string>Sobel thresold</string>
+   </property>
+  </action>
+  <action name="actionStamping">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/tisenie.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/tisenie.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stamping</string>
+   </property>
+   <property name="statusTip">
+    <string>Stamping</string>
+   </property>
+  </action>
+  <action name="actionWatercoloring">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/aquerel.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/aquerel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Watercoloring</string>
+   </property>
+   <property name="statusTip">
+    <string>Watercoloring</string>
+   </property>
+  </action>
+  <action name="actionError_diffusion_dither">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/errdif.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/errdif.png</iconset>
+   </property>
+   <property name="text">
+    <string>Error diffusion dither</string>
+   </property>
+   <property name="statusTip">
+    <string>Error diffusion dither</string>
+   </property>
+  </action>
+  <action name="actionAuthor">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/question.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/question.png</iconset>
+   </property>
+   <property name="text">
+    <string>Author</string>
+   </property>
+   <property name="toolTip">
+    <string>About author</string>
+   </property>
+   <property name="statusTip">
+    <string>About author</string>
+   </property>
+  </action>
+  <action name="actionDuplication">
+   <property name="icon">
+    <iconset>
+     <normaloff>../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/x2-512.png</normaloff>../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/x2-512.png</iconset>
+   </property>
+   <property name="text">
+    <string>Duplication</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Filters settings</string>
+   </property>
+   <property name="statusTip">
+    <string>Filters settings</string>
+   </property>
+  </action>
+  <action name="actionGamma_correction">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/gamma.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/gamma.png</iconset>
+   </property>
+   <property name="text">
+    <string>Gamma correction</string>
+   </property>
+   <property name="statusTip">
+    <string>Gamma correction</string>
+   </property>
+  </action>
+  <action name="actionErozy">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/erozy.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/erozy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Erozy</string>
+   </property>
+  </action>
+  <action name="actionConstriction">
+   <property name="icon">
+    <iconset resource="images/rrr.qrc">
+     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/expansion.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/expansion.png</iconset>
+   </property>
+   <property name="text">
+    <string>Expansion</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>AWidget</class>
+   <extends>QWidget</extends>
+   <header>awidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BWidget</class>
+   <extends>QWidget</extends>
+   <header>bwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CWidget</class>
+   <extends>QWidget</extends>
+   <header>cwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="images/rrr.qrc"/>
+ </resources>
+ <connections/>
+</ui>

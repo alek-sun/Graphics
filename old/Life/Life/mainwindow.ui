@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>638</width>
+    <height>459</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Life</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resourses.qrc">
+    <normaloff>:/new/resourse/images/game_icon.png</normaloff>:/new/resourse/images/game_icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>401</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1000</width>
+      <height>1000</height>
+     </size>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="ImageWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1200</width>
+       <height>1200</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>1200</width>
+       <height>1200</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>1200</width>
+       <height>1200</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>638</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionStep"/>
+    <addaction name="actionRun"/>
+    <addaction name="actionClear"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionGame_settings"/>
+    <addaction name="actionShow_impact"/>
+    <addaction name="actionReplace"/>
+    <addaction name="actionGame_parametrs"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_file"/>
+    <addaction name="actionSave_to_file"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAuhtor"/>
+    <addaction name="actionAbout_game"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSave_to_file"/>
+   <addaction name="actionOpen_file"/>
+   <addaction name="separator"/>
+   <addaction name="actionRun"/>
+   <addaction name="actionStep"/>
+   <addaction name="actionClear"/>
+   <addaction name="separator"/>
+   <addaction name="actionShow_impact"/>
+   <addaction name="actionReplace"/>
+   <addaction name="actionGame_settings"/>
+   <addaction name="actionGame_parametrs"/>
+   <addaction name="separator"/>
+   <addaction name="actionAbout_game"/>
+   <addaction name="actionAuhtor"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionStep">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/run.png</normaloff>:/new/resourse/images/run.png</iconset>
+   </property>
+   <property name="text">
+    <string>Step</string>
+   </property>
+   <property name="toolTip">
+    <string>Step forward</string>
+   </property>
+   <property name="statusTip">
+    <string>Step forward</string>
+   </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/play.png</normaloff>:/new/resourse/images/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run/Pause</string>
+   </property>
+   <property name="toolTip">
+    <string>Run/Pause auto steps</string>
+   </property>
+   <property name="statusTip">
+    <string>Run/Pause auto steps</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/clear2.png</normaloff>:/new/resourse/images/clear2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear all field</string>
+   </property>
+   <property name="statusTip">
+    <string>Clear all field</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionGame_settings">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/size.png</normaloff>:/new/resourse/images/size.png</iconset>
+   </property>
+   <property name="text">
+    <string>Size settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Change field and cell size</string>
+   </property>
+   <property name="statusTip">
+    <string>Change field and cell size</string>
+   </property>
+  </action>
+  <action name="actionShow_impact">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/show_impact1.png</normaloff>:/new/resourse/images/show_impact1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show impact</string>
+   </property>
+   <property name="statusTip">
+    <string>Show impact</string>
+   </property>
+   <property name="shortcut">
+    <string>I</string>
+   </property>
+  </action>
+  <action name="actionReplace">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/game_mode.png</normaloff>:/new/resourse/images/game_mode.png</iconset>
+   </property>
+   <property name="text">
+    <string>Replace/XOR</string>
+   </property>
+   <property name="toolTip">
+    <string>Change game mode Replace/XOR</string>
+   </property>
+   <property name="statusTip">
+    <string>Change game mode Replace/XOR</string>
+   </property>
+   <property name="shortcut">
+    <string>M</string>
+   </property>
+  </action>
+  <action name="actionOpen_file">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/open.png</normaloff>:/new/resourse/images/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open game</string>
+   </property>
+   <property name="toolTip">
+    <string>Load game field state to file</string>
+   </property>
+   <property name="statusTip">
+    <string>Load game field state to file</string>
+   </property>
+  </action>
+  <action name="actionSave_to_file">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/save.png</normaloff>:/new/resourse/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save game</string>
+   </property>
+   <property name="toolTip">
+    <string>Save game field state to file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save game field state to file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionGame_parametrs">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/game.png</normaloff>:/new/resourse/images/game.png</iconset>
+   </property>
+   <property name="text">
+    <string>Game parametrs</string>
+   </property>
+   <property name="toolTip">
+    <string>Change game parametrs</string>
+   </property>
+   <property name="statusTip">
+    <string>Change game parametrs</string>
+   </property>
+  </action>
+  <action name="actionAuhtor">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/question.png</normaloff>:/new/resourse/images/question.png</iconset>
+   </property>
+   <property name="text">
+    <string>Auhtor</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about author</string>
+   </property>
+   <property name="statusTip">
+    <string>Information about author</string>
+   </property>
+  </action>
+  <action name="actionAbout_game">
+   <property name="icon">
+    <iconset resource="resourses.qrc">
+     <normaloff>:/new/resourse/images/about_game.png</normaloff>:/new/resourse/images/about_game.png</iconset>
+   </property>
+   <property name="text">
+    <string>About game</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ImageWidget</class>
+   <extends>QWidget</extends>
+   <header>imagewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionRun</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionStep</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRun</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>centralWidget</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRun</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionClear</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRun</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>actionGame_settings</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>setGameLogic(GameLogic*)</signal>
+  <slot>recvGameLogic(GameLogic*)</slot>
+ </slots>
+</ui>

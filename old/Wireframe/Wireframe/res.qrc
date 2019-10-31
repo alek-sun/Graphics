@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/open.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pencil.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/question.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/save.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/settings.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cube.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cursor.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/rubbish-bin.png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cursor (2).png</file>
+        <file>../build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pointer.png</file>
+    </qresource>
+</RCC>

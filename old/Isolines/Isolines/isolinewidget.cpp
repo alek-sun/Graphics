@@ -279,7 +279,6 @@ void IsolineWidget::drawIsolines(vector<double> isolineLevels)
                     drawLine(intersec2[2].first, intersec2[2].second,
                             intersections[2].first, intersections[2].second,
                             settings->isolineColor);
-
                     drawLine(intersec2[3].first, intersec2[3].second,
                             intersections[3].first, intersections[3].second,
                             settings->isolineColor);
