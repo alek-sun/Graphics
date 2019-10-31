@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/new/rec">
+        <file>open.png</file>
+        <file>question.png</file>
+        <file>save.png</file>
+        <file>settings.png</file>
+        <file>6076.png_860.png</file>
+        <file>grid.png</file>
+        <file>pen.png</file>
+        <file>p.png</file>
+        <file>drawing-symbol-of-lines.png</file>
+        <file>drops-of-two-different-sizes-stroke-symbol-for-design.png</file>
+        <file>triad-of-three-circles-strokes.png</file>
+        <file>pencil.png</file>
+        <file>hand.png</file>
+        <file>paint.png</file>
+        <file>function-x-512.png</file>
+    </qresource>
+</RCC>
