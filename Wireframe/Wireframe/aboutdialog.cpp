@@ -6,8 +6,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    QPixmap pic ("./Data/me.jpg");
-    ui->label_5->setPixmap(pic);
+    //QPixmap pic ("./Data/me.jpg");
+    //ui->label_5->setPixmap(pic);
 }
 
 AboutDialog::~AboutDialog()

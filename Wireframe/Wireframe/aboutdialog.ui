@@ -14,22 +14,9 @@
    <string>About author</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
-    <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/question.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/question.png</iconset>
+   <iconset>
+    <normaloff>:Data/question.png</normaloff>:Data/question.png</iconset>
   </property>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>131</width>
-     <height>161</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
@@ -106,6 +93,25 @@
    </property>
    <property name="text">
     <string>Fediaeva Irina</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>12</y>
+     <width>171</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/Data/me.jpg</pixmap>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

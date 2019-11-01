@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cube.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cube.png</iconset>
+    <normaloff>:Data/cube.png</normaloff>:Data/cube.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="WireframeWidget" name="widget" native="true">
@@ -521,7 +521,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/open.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/open.png</iconset>
+     <normaloff>:Data/open.png</normaloff>:Data/open.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -530,7 +530,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/save.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/save.png</iconset>
+     <normaloff>:Data/save.png</normaloff>:Data/save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -539,7 +539,7 @@
   <action name="actionBuild_B_splane">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pencil.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pencil.png</iconset>
+     <normaloff>:Data/pencil.png</normaloff>:Data/pencil.png</iconset>
    </property>
    <property name="text">
     <string>Build B-splane</string>
@@ -548,7 +548,7 @@
   <action name="actionAuthor">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/question.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/question.png</iconset>
+     <normaloff>:Data/question.png</normaloff>:Data/question.png</iconset>
    </property>
    <property name="text">
     <string>Author</string>
