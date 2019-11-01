@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>images/clear2.png</file>
-        <file>images/pause.png</file>
-        <file>images/play.png</file>
-        <file>images/run.png</file>
-        <file>resourses2.qrc</file>
-    </qresource>
-</RCC>
