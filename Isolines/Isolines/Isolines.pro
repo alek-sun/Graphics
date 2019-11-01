@@ -58,4 +58,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    ../build-Isolines-Desktop_Qt_5_12_1_MinGW_64_bit-Release/images/images.qrc
+    images/images.qrc

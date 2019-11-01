@@ -2,6 +2,7 @@
 #define EFFECT_H
 
 #include <QImage>
+#include <cmath>
 
 class Effect
 {

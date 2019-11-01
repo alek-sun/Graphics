@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="images/rrr.qrc">
-    <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/Filter-PNG-Image.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/Filter-PNG-Image.png</iconset>
+    <normaloff>:/rrr/Filter-PNG-Image.png</normaloff>:/rrr/Filter-PNG-Image.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -312,7 +312,7 @@
    </property>
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/R2Bmp.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/R2Bmp.png</iconset>
+     <normaloff>:/rrr/R2Bmp.png</normaloff>:/rrr/R2Bmp.png</iconset>
    </property>
    <property name="text">
     <string>R2Bmp</string>
@@ -327,7 +327,7 @@
   <action name="actionBlur">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/blur.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/blur.png</iconset>
+     <normaloff>:/rrr/blur.png</normaloff>:/rrr/blur.png</iconset>
    </property>
    <property name="text">
     <string>Blur</string>
@@ -342,7 +342,7 @@
   <action name="actionSharpness">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/shapness.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/shapness.png</iconset>
+     <normaloff>:/rrr/shapness.png</normaloff>:/rrr/shapness.png</iconset>
    </property>
    <property name="text">
     <string>Sharpness</string>
@@ -357,7 +357,7 @@
   <action name="actionRoberts">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/roberts.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/roberts.png</iconset>
+     <normaloff>:/rrr/roberts.png</normaloff>:/rrr/roberts.png</iconset>
    </property>
    <property name="text">
     <string>Roberts</string>
@@ -372,7 +372,7 @@
   <action name="actionSobel">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/sobel.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/sobel.png</iconset>
+     <normaloff>:/rrr/sobel.png</normaloff>:/rrr/sobel.png</iconset>
    </property>
    <property name="text">
     <string>Sobel</string>
@@ -387,7 +387,7 @@
   <action name="actionStamping">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/tisenie.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/tisenie.png</iconset>
+     <normaloff>:/rrr/tisenie.png</normaloff>:/rrr/tisenie.png</iconset>
    </property>
    <property name="text">
     <string>Stamping</string>
@@ -399,7 +399,7 @@
   <action name="actionWatercoloring">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/aquerel.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/aquerel.png</iconset>
+     <normaloff>:/rrr/aquerel.png</normaloff>:/rrr/aquerel.png</iconset>
    </property>
    <property name="text">
     <string>Watercoloring</string>
@@ -411,7 +411,7 @@
   <action name="actionError_diffusion_dither">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/errdif.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/errdif.png</iconset>
+     <normaloff>:/rrr/errdif.png</normaloff>:/rrr/errdif.png</iconset>
    </property>
    <property name="text">
     <string>Error diffusion dither</string>
@@ -423,7 +423,7 @@
   <action name="actionAuthor">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/question.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/question.png</iconset>
+     <normaloff>:/rrr/question.png</normaloff>:/rrr/question.png</iconset>
    </property>
    <property name="text">
     <string>Author</string>
@@ -438,7 +438,7 @@
   <action name="actionDuplication">
    <property name="icon">
     <iconset>
-     <normaloff>../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/x2-512.png</normaloff>../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/x2-512.png</iconset>
+     <normaloff>../x2-512.png</normaloff>../x2-512.png</iconset>
    </property>
    <property name="text">
     <string>Duplication</string>
@@ -447,7 +447,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</iconset>
+     <normaloff>:/rrr/settings.png</normaloff>:/rrr/settings.png</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -462,7 +462,7 @@
   <action name="actionGamma_correction">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/gamma.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/gamma.png</iconset>
+     <normaloff>:/rrr/gamma.png</normaloff>:/rrr/gamma.png</iconset>
    </property>
    <property name="text">
     <string>Gamma correction</string>
@@ -474,7 +474,7 @@
   <action name="actionErozy">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/erozy.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/erozy.png</iconset>
+     <normaloff>:/rrr/erozy.png</normaloff>:/rrr/erozy.png</iconset>
    </property>
    <property name="text">
     <string>Erozy</string>
@@ -483,7 +483,7 @@
   <action name="actionConstriction">
    <property name="icon">
     <iconset resource="images/rrr.qrc">
-     <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/expansion.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/expansion.png</iconset>
+     <normaloff>:/rrr/expansion.png</normaloff>:/rrr/expansion.png</iconset>
    </property>
    <property name="text">
     <string>Expansion</string>

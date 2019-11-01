@@ -14,7 +14,7 @@ public:
 private:
     int sizeX;
     int sizeY;
-    const double M_PI = 3.14;
+    //const double M_PI = 3.14;
 };
 
 #endif // ROTATEACTION_H

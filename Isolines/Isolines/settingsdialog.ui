@@ -14,7 +14,7 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../build-Isolines-Desktop_Qt_5_12_1_MinGW_64_bit-Release/images/images.qrc">
+   <iconset resource="images/images.qrc">
     <normaloff>:/new/rec/settings.png</normaloff>:/new/rec/settings.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
@@ -269,7 +269,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../build-Isolines-Desktop_Qt_5_12_1_MinGW_64_bit-Release/images/images.qrc"/>
+  <include location="images/images.qrc"/>
  </resources>
  <connections>
   <connection>

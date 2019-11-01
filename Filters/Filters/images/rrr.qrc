@@ -8,22 +8,24 @@
         <file>fr.png</file>
         <file>sel.png</file>
         <file>ord_dither.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/R2Bmp.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/rotate.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/blur.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/shapness.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/aquerel.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/contur.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/errdif.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/gamma.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/question.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/roberts.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/sobel.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/tisenie.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/x2-512.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/Filter-PNG-Image.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/erozy.png</file>
-        <file>../../build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/expansion.png</file>
+        <file>R2Bmp.png</file>
+        <file>rotate.png</file>
+        <file>blur.png</file>
+        <file>shapness.png</file>
+        <file>aquerel.png</file>
+        <file>contur.png</file>
+        <file>errdif.png</file>
+        <file>gamma.png</file>
+        <file>question.png</file>
+        <file>roberts.png</file>
+        <file>settings.png</file>
+        <file>sobel.png</file>
+        <file>tisenie.png</file>
+        <file>x2-512.png</file>
+        <file>Filter-PNG-Image.png</file>
+        <file>erozy.png</file>
+        <file>expansion.png</file>
+        <file>me.jpg</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

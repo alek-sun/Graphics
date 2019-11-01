@@ -2,6 +2,7 @@
 #define IMAGERESIZER_H
 #include <QImage>
 #include <QDebug>
+#include <cmath>
 
 class ImageResizer
 {

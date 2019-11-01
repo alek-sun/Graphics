@@ -14,7 +14,7 @@
    <string>About author</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../build-Isolines-Desktop_Qt_5_12_1_MinGW_64_bit-Release/images/images.qrc">
+   <iconset resource="images/images.qrc">
     <normaloff>:/new/rec/question.png</normaloff>:/new/rec/question.png</iconset>
   </property>
   <widget class="QLabel" name="label_2">
@@ -105,12 +105,15 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="images/images.qrc">:/new/rec/me.jpg</pixmap>
    </property>
   </widget>
  </widget>
  <resources>
-  <include location="../build-Isolines-Desktop_Qt_5_12_1_MinGW_64_bit-Release/images/images.qrc"/>
+  <include location="images/images.qrc"/>
  </resources>
  <connections/>
 </ui>

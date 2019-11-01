@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pencil.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pencil.png</iconset>
+    <normaloff>:Data/pencil.png</normaloff>:Data/pencil.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -281,7 +281,7 @@
     </property>
     <property name="icon">
      <iconset resource="res.qrc">
-      <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pointer.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/pointer.png</iconset>
+      <normaloff>:Data/pointer.png</normaloff>:Data/pointer.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -322,7 +322,7 @@
     </property>
     <property name="icon">
      <iconset resource="res.qrc">
-      <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cursor.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/cursor.png</iconset>
+      <normaloff>:Data/cursor.png</normaloff>:Data/cursor.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -363,7 +363,7 @@
     </property>
     <property name="icon">
      <iconset resource="res.qrc">
-      <normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/rubbish-bin.png</normaloff>:/build-Wireframe-Desktop_Qt_5_12_1_MinGW_64_bit-Debug/Data/rubbish-bin.png</iconset>
+      <normaloff>:Data/rubbish-bin.png</normaloff>:Data/rubbish-bin.png</iconset>
     </property>
     <property name="iconSize">
      <size>

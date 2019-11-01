@@ -2,6 +2,7 @@
 #define GAMELOGIC_H
 #include <vector>
 #include <iostream>
+#include <cmath>
 #include "cell.h"
 
 class GameLogic

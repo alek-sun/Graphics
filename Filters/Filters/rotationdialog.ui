@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="images/rrr.qrc">
-    <normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</normaloff>:/rrr/build-Filters-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug/images/settings.png</iconset>
+    <normaloff>:/rrr/settings.png</normaloff>:/rrr/settings.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">

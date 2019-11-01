@@ -30,11 +30,6 @@ SOURCES += \
     imagewidget.cpp \
     gamelogic.cpp \
     cell.cpp \
-    cell.cpp \
-    gamelogic.cpp \
-    imagewidget.cpp \
-    main.cpp \
-    mainwindow.cpp \
     settingsdialog.cpp \
     fileparser.cpp \
     aboutdialog.cpp \
@@ -46,10 +41,6 @@ HEADERS += \
     imagewidget.h \
     gamelogic.h \
     cell.h \
-    cell.h \
-    gamelogic.h \
-    imagewidget.h \
-    mainwindow.h \
     settingsdialog.h \
     fileparser.h \
     aboutdialog.h \
@@ -60,7 +51,6 @@ FORMS += \
         mainwindow.ui \
     settingsdialog.ui \
     aboutdialog.ui \
-    gameparamsdialog.ui \
     gameparamsdialog.ui \
     descriptiondialog.ui
 

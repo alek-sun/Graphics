@@ -23,7 +23,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="images/rrr.qrc">:/rrr/me.jpg</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -105,6 +108,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images/rrr.qrc"/>
+ </resources>
  <connections/>
 </ui>
